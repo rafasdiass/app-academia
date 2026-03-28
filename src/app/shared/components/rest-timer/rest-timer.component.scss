@@ -1,0 +1,42 @@
+// rest-timer.component.scss — nota de descanso, estilo .nt amber
+
+:host { display: block; }
+
+.rest-timer {
+  display:       flex;
+  align-items:   center;
+  gap:           8px;
+  background:    var(--bg2, #111114);
+  border:        1px solid var(--border, rgba(255,255,255,0.065));
+  border-left:   3px solid var(--amber, #f0a030);
+  border-radius: 0 9px 9px 0;
+  padding:       9px 13px;
+  margin-top:    6px;
+}
+
+.rest-timer__icon {
+  font-size:  14px;
+  color:      var(--amber, #f0a030);
+  flex-shrink: 0;
+}
+
+.rest-timer__info {
+  display:     flex;
+  align-items: baseline;
+  gap:         8px;
+  flex:        1;
+}
+
+.rest-timer__time {
+  font-family:    var(--mono, 'JetBrains Mono', monospace);
+  font-size:      15px;
+  font-weight:    700;
+  color:          var(--text, #eae8e2);
+  letter-spacing: -0.02em;
+}
+
+.rest-timer__note {
+  font-size:      10px;
+  color:          var(--text2, #807e78);
+  font-weight:    500;
+}

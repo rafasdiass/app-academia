@@ -1,0 +1,146 @@
+<!-- register.page.html -->
+<ion-content [fullscreen]="true" class="auth-content">
+
+  <div class="auth-wrap">
+
+    <!-- ── Marca ─────────────────────────────────────────────────── -->
+    <header class="auth-brand">
+      <div class="auth-brand__mark" aria-hidden="true">
+        <span class="auth-brand__bar auth-brand__bar--1"></span>
+        <span class="auth-brand__bar auth-brand__bar--2"></span>
+        <span class="auth-brand__bar auth-brand__bar--3"></span>
+      </div>
+      <div class="auth-brand__text">
+        <p class="auth-brand__eyebrow">Comece agora</p>
+        <h1 class="auth-brand__title">FitTracker</h1>
+      </div>
+    </header>
+
+    <!-- ── Card ──────────────────────────────────────────────────── -->
+    <div class="auth-card">
+
+      <!-- Erro global -->
+      <div class="auth-error" *ngIf="errorMessage()" role="alert" aria-live="assertive">
+        <ion-icon name="alert-circle-outline" class="auth-error__icon" aria-hidden="true"></ion-icon>
+        <span>{{ errorMessage() }}</span>
+      </div>
+
+      <!-- Campo: nome -->
+      <div class="field">
+        <label class="field__label" for="reg-name">Seu nome</label>
+        <div class="field__wrap">
+          <ion-icon name="person-outline" class="field__icon" aria-hidden="true"></ion-icon>
+          <input
+            id="reg-name"
+            class="field__input"
+            type="text"
+            autocomplete="name"
+            placeholder="Como podemos te chamar?"
+            [(ngModel)]="displayName"
+          />
+        </div>
+      </div>
+
+      <!-- Campo: email -->
+      <div class="field">
+        <label class="field__label" for="reg-email">E-mail</label>
+        <div class="field__wrap">
+          <ion-icon name="mail-outline" class="field__icon" aria-hidden="true"></ion-icon>
+          <input
+            id="reg-email"
+            class="field__input"
+            type="email"
+            inputmode="email"
+            autocomplete="email"
+            placeholder="seu@email.com"
+            [(ngModel)]="email"
+          />
+        </div>
+      </div>
+
+      <!-- Campo: senha -->
+      <div class="field">
+        <label class="field__label" for="reg-password">Senha</label>
+        <div class="field__wrap">
+          <ion-icon name="lock-closed-outline" class="field__icon" aria-hidden="true"></ion-icon>
+          <input
+            id="reg-password"
+            class="field__input"
+            [type]="showPassword() ? 'text' : 'password'"
+            autocomplete="new-password"
+            placeholder="Mínimo 6 caracteres"
+            [(ngModel)]="password"
+          />
+          <button
+            class="field__toggle"
+            type="button"
+            (click)="togglePassword()"
+            [attr.aria-label]="showPassword() ? 'Ocultar senha' : 'Mostrar senha'"
+          >
+            <ion-icon [name]="showPassword() ? 'eye-off-outline' : 'eye-outline'" aria-hidden="true"></ion-icon>
+          </button>
+        </div>
+      </div>
+
+      <!-- Campo: confirmar senha -->
+      <div class="field">
+        <label class="field__label" for="reg-confirm">Confirmar senha</label>
+        <div
+          class="field__wrap"
+          [class.field__wrap--ok]="confirmTouched && passwordsMatch"
+          [class.field__wrap--err]="confirmTouched && !passwordsMatch"
+        >
+          <ion-icon name="lock-closed-outline" class="field__icon" aria-hidden="true"></ion-icon>
+          <input
+            id="reg-confirm"
+            class="field__input"
+            [type]="showConfirm() ? 'text' : 'password'"
+            autocomplete="new-password"
+            placeholder="Repita a senha"
+            [(ngModel)]="confirmPassword"
+            (keyup.enter)="submit()"
+          />
+          <!-- indicador de match -->
+          <ion-icon
+            *ngIf="confirmTouched"
+            [name]="passwordsMatch ? 'checkmark-circle-outline' : 'alert-circle-outline'"
+            class="field__status"
+            [class.field__status--ok]="passwordsMatch"
+            [class.field__status--err]="!passwordsMatch"
+            aria-hidden="true"
+          ></ion-icon>
+          <button
+            class="field__toggle"
+            type="button"
+            (click)="toggleConfirm()"
+            [attr.aria-label]="showConfirm() ? 'Ocultar confirmação' : 'Mostrar confirmação'"
+          >
+            <ion-icon [name]="showConfirm() ? 'eye-off-outline' : 'eye-outline'" aria-hidden="true"></ion-icon>
+          </button>
+        </div>
+      </div>
+
+      <!-- CTA principal -->
+      <button class="btn-primary" type="button" (click)="submit()" aria-label="Criar conta">
+        <span>Criar conta</span>
+        <ion-icon name="arrow-forward-outline" aria-hidden="true"></ion-icon>
+      </button>
+
+      <!-- Divisor -->
+      <div class="auth-divider" aria-hidden="true">
+        <span class="auth-divider__line"></span>
+        <span class="auth-divider__text">ou</span>
+        <span class="auth-divider__line"></span>
+      </div>
+
+      <!-- Link para login -->
+      <p class="auth-footer">
+        Já tem conta?
+        <a class="auth-footer__link" routerLink="/login">Entrar</a>
+      </p>
+
+    </div>
+
+  </div>
+
+</ion-content>

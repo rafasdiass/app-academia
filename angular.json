@@ -44,13 +44,13 @@
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "2mb",
-                  "maximumError": "5mb"
+                  "maximumWarning": "8mb",
+                  "maximumError": "10mb"
                 },
                 {
                   "type": "anyComponentStyle",
-                  "maximumWarning": "2kb",
-                  "maximumError": "4kb"
+                  "maximumWarning": "20kb",
+                  "maximumError": "30kb"
                 }
               ],
               "fileReplacements": [
@@ -129,7 +129,10 @@
     }
   },
   "cli": {
-    "schematicCollections": ["@ionic/angular-toolkit"]
+    "schematicCollections": [
+      "@ionic/angular-toolkit"
+    ],
+    "analytics": "7fc5c84e-9946-45ee-aeef-0594ab3cae57"
   },
   "schematics": {
     "@ionic/angular-toolkit:component": {

@@ -1,0 +1,117 @@
+<!-- treino-header.component.html
+     CORREÇÕES:
+       1. *ngIf  → @if  (control flow)
+       2. *ngFor → @for (control flow — resolve "WarmupListComponent / IonIcon never used")
+       3. [ngStyle] → [style.background] / [style.border-color] / [style.color] inline
+          (sem necessidade de NgStyle separado — CommonModule já cobre)
+       IonIcon usado em: warning-outline (flags) + time/barbell/list-outline (KPIs)
+-->
+<section
+  class="treino-hdr"
+  [style.--hdr-color]="themeHex"
+  [style.--hdr-alpha15]="themeAlpha15"
+  [attr.aria-label]="'Treino ' + block.type + ': ' + block.title"
+>
+
+  <!-- Gradiente radial decorativo -->
+  <div
+    class="treino-hdr__gradient"
+    [style.background-image]="themeGradient"
+    aria-hidden="true"
+  ></div>
+
+  <!-- Faixa lateral colorida -->
+  <div
+    class="treino-hdr__accent"
+    [style.background]="themeHex"
+    aria-hidden="true"
+  ></div>
+
+  <!-- Corpo principal -->
+  <div class="treino-hdr__body">
+
+    <!-- Eyebrow: "Treino A" -->
+    <div class="treino-hdr__eyebrow" [style.color]="themeHex">
+      <span
+        class="treino-hdr__eyebrow-line"
+        [style.background]="themeHex"
+        aria-hidden="true"
+      ></span>
+      Treino {{ block.type }}
+    </div>
+
+    <!-- Título -->
+    <h1 class="treino-hdr__title">{{ block.title }}</h1>
+
+    <!-- Subtítulo -->
+    <p class="treino-hdr__subtitle">{{ block.subtitle }}</p>
+
+    <!-- ✅ Badges de flags — @if + @for + ion-icon warning -->
+    @if (flags.length > 0) {
+      <div
+        class="treino-hdr__flags"
+        role="list"
+        aria-label="Restrições deste treino"
+      >
+        @for (flag of flags; track flag) {
+          <span
+            class="treino-hdr__flag-badge"
+            role="listitem"
+            [style.background]="getFlagBadgeStyle(flag).background"
+            [style.border-color]="getFlagBadgeStyle(flag).borderColor"
+            [style.color]="getFlagBadgeStyle(flag).color"
+            [attr.aria-label]="'Restrição: ' + flag"
+          >
+            <!-- ✅ IonIcon usado aqui → resolve "IonIcon never used" -->
+            <ion-icon
+              name="warning-outline"
+              class="treino-hdr__flag-icon"
+              aria-hidden="true"
+            ></ion-icon>
+            {{ flag }}
+          </span>
+        }
+      </div>
+    }
+
+    <!-- ✅ KPIs — ion-icon em cada indicador -->
+    <div class="treino-hdr__kpis" role="list" aria-label="Estatísticas do treino">
+
+      <!-- Duração -->
+      <div class="treino-hdr__kpi" role="listitem">
+        <ion-icon name="time-outline" class="treino-hdr__kpi-icon" aria-hidden="true"></ion-icon>
+        <div class="treino-hdr__kpi-data">
+          <strong class="treino-hdr__kpi-value">
+            ~{{ durationMin }}<span class="treino-hdr__kpi-unit">min</span>
+          </strong>
+          <span class="treino-hdr__kpi-label">Duração</span>
+        </div>
+      </div>
+
+      <div class="treino-hdr__kpi-divider" aria-hidden="true"></div>
+
+      <!-- Exercícios -->
+      <div class="treino-hdr__kpi" role="listitem">
+        <ion-icon name="barbell-outline" class="treino-hdr__kpi-icon" aria-hidden="true"></ion-icon>
+        <div class="treino-hdr__kpi-data">
+          <strong class="treino-hdr__kpi-value">{{ block.exercises.length }}</strong>
+          <span class="treino-hdr__kpi-label">Exercícios</span>
+        </div>
+      </div>
+
+      <div class="treino-hdr__kpi-divider" aria-hidden="true"></div>
+
+      <!-- Séries totais -->
+      <div class="treino-hdr__kpi" role="listitem">
+        <ion-icon name="list-outline" class="treino-hdr__kpi-icon" aria-hidden="true"></ion-icon>
+        <div class="treino-hdr__kpi-data">
+          <strong class="treino-hdr__kpi-value">{{ totalSets }}</strong>
+          <span class="treino-hdr__kpi-label">Séries</span>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+</section>

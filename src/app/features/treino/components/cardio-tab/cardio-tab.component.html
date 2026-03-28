@@ -1,0 +1,64 @@
+<!-- cardio-tab.component.html -->
+
+<div class="ct-sh">
+  <span class="ct-sh__bar ct-sh__bar--green"></span>
+  <div>
+    <h2 class="ct-sh__title">Cardio & HIIT Combinado</h2>
+    <p class="ct-sh__sub">{{ cardio.principle }}</p>
+  </div>
+</div>
+
+<!-- Progressão de sprints -->
+<div class="ct-sh ct-sh--sub">
+  <span class="ct-sh__bar ct-sh__bar--green"></span>
+  <h2 class="ct-sh__title">Progressão de Sprints — Dias A, B, D</h2>
+</div>
+
+<div class="ct-grid">
+  @for (fase of cardio.sprintPhases; track fase.weeks) {
+    <div class="ct-card">
+      <div class="ct-card__label">Sem {{ fase.weeks }} · {{ fase.phase }}</div>
+      <div class="ct-card__val">{{ fase.kmh }} <span class="ct-card__unit">km/h</span></div>
+      <div class="ct-card__sub">{{ fase.tiros }} tiros × {{ fase.sprintSec }}s · walk {{ fase.walkSec }}s · ratio {{ fase.ratio }}</div>
+      @if (fase.note) {
+        <div class="ct-card__note">{{ fase.note }}</div>
+      }
+    </div>
+  }
+</div>
+
+<!-- Circuito HIIT -->
+<div class="ct-sh ct-sh--sub">
+  <span class="ct-sh__bar ct-sh__bar--green"></span>
+  <h2 class="ct-sh__title">{{ cardio.hiitCircuit.name }}</h2>
+</div>
+
+<div class="ct-table-wrap">
+  <table class="ct-table">
+    <thead>
+    <tr>
+      <th>#</th>
+      <th>Exercício</th>
+      <th>Tempo</th>
+      <th>Observação</th>
+    </tr>
+    </thead>
+    <tbody>
+      @for (step of cardio.hiitCircuit.steps; track step.num) {
+        <tr>
+          <td class="ct-td-num">{{ step.num }}</td>
+          <td class="ct-td-name">{{ step.name }}</td>
+          <td class="ct-td-time">{{ step.time }}</td>
+          <td class="ct-td-note">{{ step.note }}</td>
+        </tr>
+      }
+    </tbody>
+  </table>
+</div>
+
+<div class="ct-note ct-note--orange">
+  <strong>Joelho sensível:</strong> {{ cardio.kneeNote }}
+</div>
+<div class="ct-note ct-note--amber">
+  <strong>Dia C:</strong> {{ cardio.dayC }}
+</div>

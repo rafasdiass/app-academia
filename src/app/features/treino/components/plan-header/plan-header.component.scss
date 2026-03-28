@@ -1,0 +1,207 @@
+// plan-header.component.scss
+:host {
+  display: block;
+  --bg2:    #111114;
+  --bg3:    #18181c;
+  --border: rgba(255,255,255,0.065);
+  --border2:rgba(255,255,255,0.11);
+  --text:   #eae8e2;
+  --text2:  #807e78;
+  --text3:  #44433f;
+  --rose:   #e8607a;
+  --teal:   #2ec4a8;
+  --amber:  #f0a030;
+  --blue:   #5298e8;
+  --purple: #9a78e8;
+  --green:  #58c870;
+  --red:    #e05858;
+  --orange: #e88048;
+  --pink:   #e860c8;
+}
+
+// ── Header wrapper ──────────────────────────────────────────────
+.ph {
+  background:    var(--bg2);
+  border-bottom: 1px solid var(--border);
+  padding:       1.4rem 1.2rem 1.1rem;
+  position:      relative;
+  overflow:      hidden;
+}
+
+.ph__glow {
+  position:       absolute;
+  top:            -80px;
+  right:          -40px;
+  width:          300px;
+  height:         300px;
+  background:     radial-gradient(circle, rgba(232,96,122,0.08), transparent 65%);
+  pointer-events: none;
+}
+
+// ── Eyebrow ─────────────────────────────────────────────────────
+.ph__eye {
+  display:        flex;
+  align-items:    center;
+  gap:            8px;
+  font-size:      9px;
+  font-weight:    700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color:          var(--rose);
+  margin-bottom:  0.6rem;
+}
+
+.ph__eye-line {
+  display:       block;
+  width:         20px;
+  height:        2px;
+  background:    var(--rose);
+  border-radius: 1px;
+  flex-shrink:   0;
+}
+
+// ── Row: título + KPIs ─────────────────────────────────────────
+.ph__row {
+  display:         flex;
+  align-items:     flex-start;
+  justify-content: space-between;
+  flex-wrap:       wrap;
+  gap:             1rem;
+  margin-bottom:   0.9rem;
+}
+
+.ph__left { flex: 1; min-width: 0; }
+
+.ph__title {
+  font-size:      22px;
+  font-weight:    800;
+  letter-spacing: -0.03em;
+  line-height:    1.15;
+  color:          var(--text);
+  margin:         0 0 5px;
+}
+
+.ph__sub {
+  font-size:   11px;
+  color:       var(--text2);
+  line-height: 1.65;
+  margin:      0;
+}
+
+.ph__user { color: var(--teal); font-weight: 600; }
+
+// ── KPIs ────────────────────────────────────────────────────────
+.ph__kpis {
+  display:     flex;
+  gap:         6px;
+  flex-wrap:   wrap;
+  align-items: flex-start;
+}
+
+.ph__kpi {
+  background:    var(--bg3);
+  border:        1px solid var(--border2);
+  border-radius: 10px;
+  padding:       8px 12px;
+  text-align:    center;
+  flex-shrink:   0;
+  min-width:     68px;
+
+  strong {
+    display:     block;
+    font-size:   20px;
+    font-weight: 800;
+    line-height: 1;
+    color:       var(--text);
+  }
+
+  span {
+    display:        block;
+    font-size:      8px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color:          var(--text3);
+    margin-top:     3px;
+  }
+
+  em {
+    display:    block;
+    font-size:  9px;
+    font-style: normal;
+    color:      var(--green);
+    margin-top: 1px;
+  }
+}
+
+// ── Tags ────────────────────────────────────────────────────────
+.ph__tags {
+  display:   flex;
+  flex-wrap: wrap;
+  gap:       5px;
+}
+
+.ph__tag {
+  display:       inline-flex;
+  align-items:   center;
+  gap:           5px;
+  border-radius: 20px;
+  padding:       3px 10px;
+  font-size:     10px;
+  font-weight:   500;
+  border:        1px solid;
+  line-height:   1.4;
+}
+
+.ph__tag-dot {
+  display:       block;
+  width:         5px;
+  height:        5px;
+  border-radius: 50%;
+  background:    currentColor;
+  flex-shrink:   0;
+}
+
+// Variantes de cor (cssClass vindo do Firestore)
+.ph__tag--tr  { background: rgba(232,96,122,0.09);  color: var(--rose);   border-color: rgba(232,96,122,0.22);  }
+.ph__tag--tt  { background: rgba(46,196,168,0.09);  color: var(--teal);   border-color: rgba(46,196,168,0.22);  }
+.ph__tag--ta  { background: rgba(240,160,48,0.09);  color: var(--amber);  border-color: rgba(240,160,48,0.22);  }
+.ph__tag--trd { background: rgba(224,88,88,0.1);    color: var(--red);    border-color: rgba(224,88,88,0.22);   }
+.ph__tag--to  { background: rgba(232,128,72,0.09);  color: var(--orange); border-color: rgba(232,128,72,0.22);  }
+.ph__tag--tp  { background: rgba(154,120,232,0.09); color: var(--purple); border-color: rgba(154,120,232,0.22); }
+.ph__tag--tg  { background: rgba(88,200,112,0.09);  color: var(--green);  border-color: rgba(88,200,112,0.22);  }
+.ph__tag--tpk { background: rgba(232,96,200,0.09);  color: var(--pink);   border-color: rgba(232,96,200,0.22);  }
+.ph__tag--tb  { background: rgba(82,152,232,0.09);  color: var(--blue);   border-color: rgba(82,152,232,0.22);  }
+
+// ── Alert bar ───────────────────────────────────────────────────
+.ph__abar {
+  display:       flex;
+  align-items:   flex-start;
+  gap:           8px;
+  flex-wrap:     wrap;
+  padding:       8px 1.2rem;
+  background:    rgba(224,88,88,0.05);
+  border-top:    1px solid rgba(224,88,88,0.12);
+  border-bottom: 1px solid rgba(224,88,88,0.12);
+  font-size:     11px;
+  color:         var(--text2);
+  line-height:   1.6;
+}
+
+.ph__abadge {
+  background:     rgba(224,88,88,0.14);
+  color:          var(--red);
+  border:         1px solid rgba(224,88,88,0.28);
+  border-radius:  5px;
+  padding:        2px 8px;
+  font-size:      9px;
+  font-weight:    700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  flex-shrink:    0;
+  white-space:    nowrap;
+}
+
+.ph__abar-txt {
+  margin: 0;
+  strong { color: var(--text); font-weight: 600; }
+}

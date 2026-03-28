@@ -1,0 +1,41 @@
+// WarmupListComponent — fiel ao .wu do protótipo HTML
+
+.warmup-section {
+  background:    var(--bg2, #111114);
+  border:        1px solid var(--border, rgba(255,255,255,0.065));
+  border-left:   3px solid var(--ion-color-warning, #f0a030);
+  border-radius: 0 9px 9px 0;
+  padding:       11px 14px;
+  margin-bottom: 1.2rem;
+}
+
+.warmup-title {
+  display:        flex;
+  align-items:    center;
+  gap:            5px;
+  font-size:      9px;
+  font-weight:    700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color:          var(--ion-color-warning, #f0a030);
+  margin-bottom:  8px;
+}
+
+.warmup-list {
+  list-style: none;
+  display:    flex;
+  flex-wrap:  wrap;
+  gap:        5px;
+  margin:     0;
+  padding:    0;
+}
+
+.warmup-item {
+  background:    var(--bg3, #18181c);
+  border:        1px solid var(--border, rgba(255,255,255,0.065));
+  border-radius: 5px;
+  padding:       3px 9px;
+  font-size:     10px;
+  color:         var(--text2, #807e78);
+  line-height:   1.5;
+}

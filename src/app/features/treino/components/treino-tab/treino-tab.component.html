@@ -1,0 +1,39 @@
+<!-- TreinoTabComponent
+     Lista de aquecimento + lista de exercícios em accordion.
+     expandedIndex controla qual ExerciseCard está aberto.
+-->
+<div class="treino-tab">
+
+  <!-- Aquecimento do bloco -->
+  <app-warmup-list
+    *ngIf="block.warmup?.length"
+    [items]="block.warmup"
+    [title]="'Aquecimento'"
+  />
+
+  <!-- Lista de exercícios -->
+  <div
+    class="treino-tab__exercises"
+    role="list"
+    aria-label="Exercícios do treino"
+  >
+    <app-exercise-card
+      *ngFor="let exercise of block.exercises; index as i; trackBy: trackByExerciseId"
+      [exercise]="exercise"
+      [color]="block.color"
+      [index]="i + 1"
+      [expanded]="expandedIndex === i"
+      (expandedChange)="onCardExpanded(i)"
+    />
+  </div>
+
+  <!-- Estado vazio (bloco sem exercícios) -->
+  <div
+    class="treino-tab__empty"
+    *ngIf="block.exercises.length === 0"
+    role="status"
+  >
+    <span>Nenhum exercício neste bloco.</span>
+  </div>
+
+</div>

@@ -1,0 +1,222 @@
+// nutrition-tab.component.scss
+:host {
+  display: block;
+  --bg2:    #111114;
+  --bg3:    #18181c;
+  --border: rgba(255,255,255,0.065);
+  --border2:rgba(255,255,255,0.11);
+  --text:   #eae8e2;
+  --text2:  #807e78;
+  --text3:  #44433f;
+  --rose:   #e8607a;
+  --teal:   #2ec4a8;
+  --amber:  #f0a030;
+  --blue:   #5298e8;
+  --purple: #9a78e8;
+  --green:  #58c870;
+  --red:    #e05858;
+  --orange: #e88048;
+  --pink:   #e860c8;
+}
+
+// ── Section header ──────────────────────────────────────────────
+.nt-sh {
+  display:       flex;
+  align-items:   center;
+  gap:           10px;
+  margin-bottom: 1rem;
+  &--sub { margin-top: 1.5rem; .nt-sh__title { font-size: 14px; } }
+}
+
+.nt-sh__bar {
+  display: block; width: 3px; height: 24px; border-radius: 2px; flex-shrink: 0;
+  &--pink   { background: var(--pink);   }
+  &--blue   { background: var(--blue);   }
+  &--purple { background: var(--purple); }
+}
+
+.nt-sh__title { font-size: 16px; font-weight: 700; color: var(--text); letter-spacing: -0.02em; margin: 0; }
+.nt-sh__sub   { font-size: 10px; color: var(--text2); margin: 3px 0 0; line-height: 1.6; }
+
+// ── Stats grid ──────────────────────────────────────────────────
+.nt-grid {
+  display:               grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap:                   8px;
+  margin-bottom:         1rem;
+}
+
+.nt-card {
+  background:    var(--bg2);
+  border:        1px solid var(--border);
+  border-radius: 10px;
+  padding:       11px 13px;
+}
+
+.nt-card__label {
+  font-size:      8px;
+  font-weight:    700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color:          var(--text3);
+  margin-bottom:  4px;
+}
+
+.nt-card__val {
+  font-size:     16px;
+  font-weight:   800;
+  line-height:   1;
+  color:         var(--text);
+  margin-bottom: 4px;
+}
+
+.nt-card__sub {
+  font-size:   10px;
+  color:       var(--text2);
+  line-height: 1.4;
+}
+
+// Val color variants
+.nt-card__val--rose   { color: var(--rose);   }
+.nt-card__val--teal   { color: var(--teal);   }
+.nt-card__val--amber  { color: var(--amber);  }
+.nt-card__val--blue   { color: var(--blue);   }
+.nt-card__val--purple { color: var(--purple); }
+.nt-card__val--green  { color: var(--green);  }
+.nt-card__val--red    { color: var(--red);    }
+.nt-card__val--orange { color: var(--orange); }
+.nt-card__val--pink   { color: var(--pink);   }
+
+// ── Note ────────────────────────────────────────────────────────
+.nt-note {
+  border-radius: 0 9px 9px 0;
+  border:        1px solid var(--border);
+  border-left:   3px solid var(--blue);
+  background:    var(--bg2);
+  padding:       9px 13px;
+  margin-top:    0.7rem;
+  font-size:     11px;
+  color:         var(--text2);
+  line-height:   1.7;
+  strong { color: var(--text); font-weight: 600; }
+  &--mt     { margin-top: 8px; }
+  &--rose   { border-left-color: var(--rose);   }
+  &--teal   { border-left-color: var(--teal);   }
+  &--amber  { border-left-color: var(--amber);  }
+  &--green  { border-left-color: var(--green);  }
+  &--purple { border-left-color: var(--purple); }
+  &--orange { border-left-color: var(--orange); }
+  &--pink   { border-left-color: var(--pink);   }
+  &--blue   { border-left-color: var(--blue);   }
+}
+
+// ── Alert box ────────────────────────────────────────────────────
+.nt-alert {
+  display:       flex;
+  gap:           10px;
+  border-radius: 10px;
+  padding:       10px 14px;
+  margin-bottom: 1rem;
+  border:        1px solid;
+  font-size:     11px;
+  line-height:   1.7;
+  color:         var(--text2);
+  strong { color: var(--text); }
+  &--warn { background: rgba(224,88,88,0.06); border-color: rgba(224,88,88,0.18); }
+}
+
+.nt-alert__icon { font-size: 14px; flex-shrink: 0; margin-top: 1px; }
+
+// ── Suplementos ─────────────────────────────────────────────────
+.nt-sup {
+  background:    var(--bg2);
+  border:        1px solid var(--border);
+  border-radius: 12px;
+  overflow:      hidden;
+  &--mt { margin-top: 10px; }
+}
+
+.nt-sup__hdr {
+  display:       flex;
+  align-items:   center;
+  gap:           12px;
+  padding:       12px 14px;
+  background:    var(--bg3);
+  border-bottom: 1px solid var(--border);
+}
+
+.nt-sup__icon {
+  width:           36px;
+  height:          36px;
+  border-radius:   9px;
+  display:         flex;
+  align-items:     center;
+  justify-content: center;
+  font-size:       18px;
+  flex-shrink:     0;
+  &--purple { background: rgba(154,120,232,0.15); }
+  &--amber  { background: rgba(240,160,48,0.15);  }
+  &--green  { background: rgba(88,200,112,0.15);  }
+}
+
+.nt-sup__name {
+  font-size:   13px;
+  font-weight: 700;
+  color:       var(--text);
+  &--purple { color: var(--purple); }
+  &--amber  { color: var(--amber);  }
+  &--green  { color: var(--green);  }
+}
+
+.nt-sup__evidence { font-size: 9px; color: var(--text3); margin-top: 2px; }
+
+.nt-sup__phases {
+  padding:        10px 14px;
+  display:        flex;
+  flex-direction: column;
+  gap:            8px;
+}
+
+.nt-sup__phase {
+  display:     flex;
+  gap:         10px;
+  align-items: flex-start;
+  font-size:   11px;
+}
+
+.nt-sup__phase-label {
+  font-size:   9px;
+  font-weight: 700;
+  white-space: nowrap;
+  flex-shrink: 0;
+  padding-top: 2px;
+  &--rose  { color: var(--rose);  }
+  &--teal  { color: var(--teal);  }
+  &--amber { color: var(--amber); }
+  &--green { color: var(--green); }
+}
+
+.nt-sup__phase-body { color: var(--text2); line-height: 1.6; }
+
+.nt-sup__dosages {
+  display:   flex;
+  gap:       16px;
+  padding:   8px 14px;
+  flex-wrap: wrap;
+  border-top: 1px solid var(--border);
+}
+
+.nt-sup__dos {
+  display:        flex;
+  flex-direction: column;
+  align-items:    center;
+  gap:            3px;
+
+  strong { font-size: 15px; font-weight: 800; color: var(--text); }
+  span   { font-size: 9px; color: var(--text3); }
+}
+
+// dos val colors
+.nt-sup__dos-val--purple { color: var(--purple) !important; }
+.nt-sup__dos-val--amber  { color: var(--amber)  !important; }
+.nt-sup__dos-val--green  { color: var(--green)  !important; }

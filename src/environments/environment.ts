@@ -1,16 +1,29 @@
-// This file can be replaced during build by using the `fileReplacements` array.
-// `ng build` replaces `environment.ts` with `environment.prod.ts`.
-// The list of file replacements can be found in `angular.json`.
+// ─────────────────────────────────────────────────────────────────
+// environment.ts — Desenvolvimento
+//
+// Como preencher:
+//   1. Acesse console.firebase.google.com
+//   2. Crie um projeto (ex: fittracker-dev)
+//   3. Clique em "Adicionar app" → Web (</>)
+//   4. Copie o firebaseConfig gerado e cole abaixo
+//
+// IMPORTANTE:
+//   Estas credenciais não são segredo — ficam expostas no bundle JS.
+//   A segurança real vem das Firestore Security Rules no console.
+//   Use um projeto Firebase separado para dev e outro para prod.
+// ─────────────────────────────────────────────────────────────────
 
 export const environment = {
-  production: false
-};
+  production: false,
 
-/*
- * For easier debugging in development mode, you can import the following file
- * to ignore zone related error stack frames such as `zone.run`, `zoneDelegate.invokeTask`.
- *
- * This import should be commented out in production mode because it will have a negative impact
- * on performance if an error is thrown.
- */
-// import 'zone.js/plugins/zone-error';  // Included with Angular CLI.
+
+  firebase: {
+    apiKey: "AIzaSyBz6pYeHqznd8IhLmkerLVkVLFFsc6GLwE",
+    authDomain: "fittracker-14d2d.firebaseapp.com",
+    projectId: "fittracker-14d2d",
+    storageBucket: "fittracker-14d2d.firebasestorage.app",
+    messagingSenderId: "450802094210",
+    appId: "1:450802094210:web:f84ee52073223a56e3e49b",
+    measurementId: "G-K0CLJ55HR1"
+  },
+}

@@ -1,0 +1,54 @@
+<!-- TreinoHeaderComponent
+     Cabeçalho visual do bloco de treino ativo.
+     Cores injetadas via CSS custom properties.
+-->
+<div
+  class="treino-hdr"
+  [style.--hdr-color]="themeHex"
+  [style.--hdr-alpha15]="themeAlpha15"
+  [style.background-image]="themeGradient"
+>
+
+  <!-- Faixa lateral colorida -->
+  <div class="treino-hdr__accent" [style.background]="themeHex"></div>
+
+  <!-- Corpo do header -->
+  <div class="treino-hdr__body">
+
+    <!-- Eyebrow: tipo do treino (A / B / C / D) -->
+    <div class="treino-hdr__eyebrow" [style.color]="themeHex">
+      <span class="treino-hdr__eyebrow-line" [style.background]="themeHex"></span>
+      Treino {{ block.type }}
+    </div>
+
+    <!-- Título e subtítulo -->
+    <h1 class="treino-hdr__title">{{ block.title }}</h1>
+    <p  class="treino-hdr__subtitle">{{ block.subtitle }}</p>
+
+    <!-- Badges de flags corporais -->
+    <div class="treino-hdr__flags" *ngIf="flags.length > 0">
+      <span
+        *ngFor="let flag of flags"
+        class="treino-hdr__flag-badge"
+        [ngStyle]="getFlagBadgeStyle(flag)"
+        [attr.aria-label]="'Atenção: ' + flag"
+      >
+        {{ flag }}
+      </span>
+    </div>
+
+    <!-- KPIs: exercícios · séries prescritas -->
+    <div class="treino-hdr__kpis">
+      <div class="treino-hdr__kpi">
+        <strong>{{ block.exercises.length }}</strong>
+        <span>exercícios</span>
+      </div>
+      <div class="treino-hdr__kpi-divider"></div>
+      <div class="treino-hdr__kpi">
+        <strong>{{ block.exercises | sumSets }}</strong>
+        <span>séries</span>
+      </div>
+    </div>
+
+  </div>
+</div>

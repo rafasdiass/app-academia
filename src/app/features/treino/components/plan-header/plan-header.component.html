@@ -1,0 +1,55 @@
+<!-- plan-header.component.html -->
+<header class="ph">
+
+  <!-- glow decorativo -->
+  <div class="ph__glow" aria-hidden="true"></div>
+
+  <!-- eyebrow -->
+  <div class="ph__eye">
+    <span class="ph__eye-line"></span>
+    {{ plan.name }}
+  </div>
+
+  <!-- título + kpis -->
+  <div class="ph__row">
+    <div class="ph__left">
+      <h1 class="ph__title">{{ plan.durationWeeks }} Semanas · {{ plan.name }}</h1>
+      <p class="ph__sub">
+        @if (user) { <span class="ph__user">Olá, {{ user.displayName }}</span> · }
+        {{ plan.subtitle }}
+      </p>
+    </div>
+
+    <div class="ph__kpis">
+      @for (kpi of plan.kpis; track kpi.label) {
+        <div class="ph__kpi">
+          <strong>{{ kpi.value }}</strong>
+          <span>{{ kpi.label }}</span>
+          <em>{{ kpi.sub }}</em>
+        </div>
+      }
+    </div>
+  </div>
+
+  <!-- tags -->
+  <div class="ph__tags">
+    @for (tag of plan.tags; track tag.key) {
+      <span class="ph__tag" [ngClass]="'ph__tag--' + tag.cssClass">
+        <i class="ph__tag-dot"></i>{{ tag.label }}
+      </span>
+    }
+  </div>
+
+</header>
+
+<!-- alert bar restrições -->
+@if (plan.restrictions?.length) {
+  <div class="ph__abar">
+    <span class="ph__abadge">⚠ Restrições ativas</span>
+    <p class="ph__abar-txt">
+      @for (r of plan.restrictions; track r.key) {
+        <strong>{{ r.label }}:</strong> {{ r.description }}&nbsp;
+      }
+    </p>
+  </div>
+}

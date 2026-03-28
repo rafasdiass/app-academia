@@ -1,0 +1,191 @@
+// treino-header.component.scss — fiel ao .sh + .sr + .hdr do protótipo
+
+:host {
+  display: block;
+  --hdr-color:   #e8607a;
+  --hdr-alpha15: rgba(232,96,122,0.15);
+}
+
+// ══ Container ════════════════════════════════════════════════════════
+.treino-hdr {
+  position:      relative;
+  overflow:      hidden;
+  background:    var(--bg2, #111114);
+  border-bottom: 1px solid var(--border, rgba(255,255,255,0.065));
+  padding:       20px 16px 20px 0;
+
+  // Radial glow top-right (como .hdr::before)
+  &::before {
+    content:        '';
+    position:       absolute;
+    top:            -80px; right: -40px;
+    width:          280px; height: 280px;
+    background:     radial-gradient(circle, var(--hdr-alpha15), transparent 65%);
+    pointer-events: none;
+  }
+}
+
+// Gradiente radial injetado via [style.background-image]
+.treino-hdr__gradient {
+  position:       absolute;
+  inset:          0;
+  pointer-events: none;
+}
+
+// Faixa lateral colorida — como .shb do protótipo
+.treino-hdr__accent {
+  position:      absolute;
+  left:          0; top: 0; bottom: 0;
+  width:         3px;
+  border-radius: 0 2px 2px 0;
+}
+
+// Corpo à direita da faixa
+.treino-hdr__body {
+  flex:         1;
+  padding-left: 16px;
+  position:     relative;
+  z-index:      1;
+}
+
+// ══ Eyebrow = .hdr-eye ══════════════════════════════════════════════
+.treino-hdr__eyebrow {
+  display:        flex;
+  align-items:    center;
+  gap:            7px;
+  font-family:    var(--head, 'Syne', sans-serif);
+  font-size:      9px;
+  font-weight:    700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  margin-bottom:  6px;
+}
+
+.treino-hdr__eyebrow-line {
+  display:       inline-block;
+  width:         20px; height: 2px;
+  border-radius: 1px;
+  flex-shrink:   0;
+}
+
+// ══ Título = .hdr h1 ════════════════════════════════════════════════
+.treino-hdr__title {
+  font-family:    var(--head, 'Syne', sans-serif);
+  font-size:      20px;
+  font-weight:    800;
+  letter-spacing: -0.03em;
+  line-height:    1.2;
+  color:          var(--text, #eae8e2);
+  margin:         0 0 5px;
+}
+
+// ══ Subtítulo = .hdr-sub ════════════════════════════════════════════
+.treino-hdr__subtitle {
+  font-size:   11px;
+  color:       var(--text2, #807e78);
+  line-height: 1.7;
+  margin:      0 0 12px;
+}
+
+// ══ Flags = .tags + .tag ════════════════════════════════════════════
+.treino-hdr__flags {
+  display:       flex;
+  flex-wrap:     wrap;
+  gap:           5px;
+  margin-bottom: 14px;
+}
+
+.treino-hdr__flag-badge {
+  display:        inline-flex;
+  align-items:    center;
+  gap:            4px;
+  border-radius:  20px;
+  padding:        4px 10px;
+  font-size:      9px;
+  font-weight:    600;
+  border:         1px solid;
+  font-family:    var(--mono, 'JetBrains Mono', monospace);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  white-space:    nowrap;
+}
+
+.treino-hdr__flag-icon {
+  font-size:  11px;
+  flex-shrink: 0;
+}
+
+// ══ KPIs = .sr + .sc ════════════════════════════════════════════════
+.treino-hdr__kpis {
+  display:       flex;
+  align-items:   stretch;
+  gap:           0;
+  background:    var(--bg3, #18181c);
+  border:        1px solid var(--border2, rgba(255,255,255,0.11));
+  border-radius: 10px;
+  overflow:      hidden;
+  width:         fit-content;
+  max-width:     100%;
+}
+
+.treino-hdr__kpi {
+  display:         flex;
+  flex-direction:  column;
+  align-items:     center;
+  justify-content: center;
+  padding:         10px 16px;
+  text-align:      center;
+  gap:             2px;
+  min-width:       72px;
+}
+
+// Ícone acima do valor
+.treino-hdr__kpi-icon {
+  font-size:   14px;
+  color:       var(--text3, #44433f);
+  margin-bottom: 2px;
+  flex-shrink: 0;
+}
+
+// Wrapper valor + label
+.treino-hdr__kpi-data {
+  display:        flex;
+  flex-direction: column;
+  align-items:    center;
+  gap:            1px;
+}
+
+.treino-hdr__kpi-value {
+  font-family:  var(--head, 'Syne', sans-serif);
+  font-size:    18px;
+  font-weight:  800;
+  color:        var(--text, #eae8e2);
+  line-height:  1;
+  display:      flex;
+  align-items:  baseline;
+  gap:          2px;
+}
+
+.treino-hdr__kpi-unit {
+  font-family: var(--font, 'Inter', sans-serif);
+  font-size:   10px;
+  font-weight: 500;
+  color:       var(--text2, #807e78);
+}
+
+.treino-hdr__kpi-label {
+  font-size:      8px;
+  font-weight:    700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color:          var(--text3, #44433f);
+  margin-top:     1px;
+}
+
+// Divisória vertical entre KPIs
+.treino-hdr__kpi-divider {
+  width:      1px;
+  background: var(--border, rgba(255,255,255,0.065));
+  align-self: stretch;
+  flex-shrink: 0;
+}

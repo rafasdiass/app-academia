@@ -1,0 +1,133 @@
+<!-- nutrition-tab.component.html -->
+
+<div class="nt-sh">
+  <span class="nt-sh__bar nt-sh__bar--pink"></span>
+  <div>
+    <h2 class="nt-sh__title">Nutrição, Hiperhidratação & Suplementação</h2>
+    <p class="nt-sh__sub">Ajuste calórico para treino concorrente · Creatina · Maltodextrina · Eletrólitos</p>
+  </div>
+</div>
+
+<!-- Macros -->
+<div class="nt-grid">
+  <div class="nt-card">
+    <div class="nt-card__label">TMB (Mifflin-St Jeor)</div>
+    <div class="nt-card__val nt-card__val--pink">~{{ nutrition.tmb }}</div>
+    <div class="nt-card__sub">kcal/dia · {{ athlete.weightKg }} kg · {{ athlete.ageYears }} anos</div>
+  </div>
+  <div class="nt-card">
+    <div class="nt-card__label">TDEE (4 dias treino)</div>
+    <div class="nt-card__val nt-card__val--rose">~{{ nutrition.tdee }}</div>
+    <div class="nt-card__sub">kcal/dia · fator atividade 1,55</div>
+  </div>
+  <div class="nt-card">
+    <div class="nt-card__label">Gasto HIIT/sprint</div>
+    <div class="nt-card__val nt-card__val--orange">+{{ nutrition.hiitBonus }}</div>
+    <div class="nt-card__sub">kcal/dia treino · EPOC incluído</div>
+  </div>
+  <div class="nt-card">
+    <div class="nt-card__label">Alvo perda gordura</div>
+    <div class="nt-card__val nt-card__val--teal">{{ nutrition.targetKcal }}</div>
+    <div class="nt-card__sub">kcal/dia · déficit ~{{ nutrition.deficit }} kcal</div>
+  </div>
+  <div class="nt-card">
+    <div class="nt-card__label">Proteína diária</div>
+    <div class="nt-card__val nt-card__val--green">{{ nutrition.proteinG.min }}–{{ nutrition.proteinG.max }}g</div>
+    <div class="nt-card__sub">{{ nutrition.proteinPerKg.min }}–{{ nutrition.proteinPerKg.max }} g/kg</div>
+  </div>
+  <div class="nt-card">
+    <div class="nt-card__label">Carboidratos</div>
+    <div class="nt-card__val nt-card__val--blue">~{{ nutrition.carbsG }}g</div>
+    <div class="nt-card__sub">concentrados pré e pós-treino</div>
+  </div>
+  <div class="nt-card">
+    <div class="nt-card__label">Gorduras</div>
+    <div class="nt-card__val nt-card__val--amber">~{{ nutrition.fatG }}g</div>
+    <div class="nt-card__sub">omega-3 prioritário</div>
+  </div>
+</div>
+
+<div class="nt-note nt-note--pink">
+  <strong>Distribuição:</strong>
+  Pré-treino: {{ nutrition.distribution.preTreino.kcal }} kcal ({{ nutrition.distribution.preTreino.note }}) ·
+  Intra: {{ nutrition.distribution.intraTreino.kcal }} kcal ({{ nutrition.distribution.intraTreino.note }}) ·
+  Pós: {{ nutrition.distribution.posTreino.kcal }} kcal ({{ nutrition.distribution.posTreino.note }}) ·
+  Descanso: {{ nutrition.distribution.restDay }}
+</div>
+
+<!-- Hiperhidratação -->
+<div class="nt-sh nt-sh--sub">
+  <span class="nt-sh__bar nt-sh__bar--blue"></span>
+  <h2 class="nt-sh__title">Protocolo de Hiperhidratação — {{ hydration.durationWeeks }} Semanas</h2>
+</div>
+
+<div class="nt-alert nt-alert--warn">
+  <span class="nt-alert__icon">⚠</span>
+  <div><strong>AVISO MÉDICO:</strong> {{ hydration.warning }}</div>
+</div>
+
+<div class="nt-grid">
+  <div class="nt-card">
+    <div class="nt-card__label">Volume total/dia</div>
+    <div class="nt-card__val nt-card__val--blue">{{ hydration.totalLitersDay }} L</div>
+    <div class="nt-card__sub">{{ hydration.dosesCount }} doses de {{ hydration.dosesMl }}ml · {{ hydration.scheduleStart }}–{{ hydration.scheduleEnd }}</div>
+  </div>
+  <div class="nt-card">
+    <div class="nt-card__label">Gatorade intra</div>
+    <div class="nt-card__val nt-card__val--teal">+{{ hydration.gatoradeIntraMl }}ml</div>
+    <div class="nt-card__sub">durante o treino — obrigatório</div>
+  </div>
+  <div class="nt-card">
+    <div class="nt-card__label">Sal nas doses</div>
+    <div class="nt-card__val nt-card__val--amber" style="font-size:12px">{{ hydration.saltPerDose }}</div>
+    <div class="nt-card__sub">a cada 2ª dose de água</div>
+  </div>
+  <div class="nt-card">
+    <div class="nt-card__label">Duração máxima</div>
+    <div class="nt-card__val nt-card__val--red">{{ hydration.durationWeeks }} sem.</div>
+    <div class="nt-card__sub">não ultrapassar</div>
+  </div>
+</div>
+
+<div class="nt-note nt-note--blue">{{ hydration.mechanism }}</div>
+
+<!-- Suplementos -->
+<div class="nt-sh nt-sh--sub">
+  <span class="nt-sh__bar nt-sh__bar--purple"></span>
+  <h2 class="nt-sh__title">Protocolos de Suplementação</h2>
+</div>
+
+@for (sup of supplements; track sup.name; let i = $index) {
+  <div class="nt-sup" [class.nt-sup--mt]="i > 0">
+
+    <div class="nt-sup__hdr">
+      <div class="nt-sup__icon" [ngClass]="'nt-sup__icon--' + sup.color">{{ sup.icon }}</div>
+      <div>
+        <div class="nt-sup__name" [ngClass]="'nt-sup__name--' + sup.color">{{ sup.name }}</div>
+        <div class="nt-sup__evidence">{{ sup.evidence }}</div>
+      </div>
+    </div>
+
+    <div class="nt-sup__phases">
+      @for (phase of sup.phases; track phase.label) {
+        <div class="nt-sup__phase">
+          <span class="nt-sup__phase-label" [ngClass]="'nt-sup__phase-label--' + phase.color">{{ phase.label }}</span>
+          <span class="nt-sup__phase-body">{{ phase.body }}</span>
+        </div>
+      }
+    </div>
+
+    @if (sup.dosages?.length) {
+      <div class="nt-sup__dosages">
+        @for (d of sup.dosages; track d.label) {
+          <div class="nt-sup__dos">
+            <strong [ngClass]="'nt-sup__dos-val--' + sup.color">{{ d.value }}</strong>
+            <span>{{ d.label }}</span>
+          </div>
+        }
+      </div>
+    }
+
+    <div class="nt-note nt-note--mt" [ngClass]="'nt-note--' + sup.color">{{ sup.note }}</div>
+  </div>
+}

@@ -1,0 +1,33 @@
+<!-- treino-tab.component.html — Angular control flow (@if/@for) -->
+<div class="treino-tab">
+
+  <!-- Aquecimento -->
+  @if (block.warmup?.length) {
+    <app-warmup-list [items]="block.warmup!" title="Aquecimento" />
+  }
+
+  <!-- Lista de exercícios com accordion -->
+  <div
+    class="treino-tab__exercises"
+    role="list"
+    [attr.aria-label]="'Exercícios do Treino ' + block.type"
+  >
+    @for (exercise of block.exercises; track exercise.id; let i = $index) {
+      <app-exercise-card
+        [exercise]="exercise"
+        [color]="block.color"
+        [index]="i + 1"
+        [expanded]="expandedIndex === i"
+        (expandedChange)="onCardExpanded(i)"
+      />
+    }
+  </div>
+
+  <!-- Estado vazio -->
+  @if (block.exercises.length === 0) {
+    <div class="treino-tab__empty" role="status" aria-live="polite">
+      <p>Nenhum exercício disponível neste bloco.</p>
+    </div>
+  }
+
+</div>

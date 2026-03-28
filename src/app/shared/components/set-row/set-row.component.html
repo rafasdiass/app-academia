@@ -1,0 +1,68 @@
+<!-- set-row.component.html — layout claro para iniciantes -->
+<div
+  class="set-row"
+  [ngClass]="set.label | setVisualStyle"
+  [style.--c]="color | themeHex"
+  role="listitem"
+>
+
+  <!-- Col 1: Label + tipo da série -->
+  <div class="set-col set-col--label">
+    <span class="set-label">{{ set.label }}</span>
+    <span class="set-label-hint">{{ set.label | setLabelHint }}</span>
+  </div>
+
+  <!-- Col 2: Carga -->
+  <div class="set-col set-col--load">
+    <span class="set-col__heading">Carga</span>
+    @if (set.loadPct) {
+      <span class="set-load-val">{{ set.loadPct }}</span>
+      @if (set.loadPct !== 'mesma') {
+        <span class="set-load-hint">do 1RM</span>
+      }
+    } @else {
+      <span class="set-load-empty">Peso livre</span>
+    }
+  </div>
+
+  <!-- Col 3: Repetições -->
+  <div class="set-col set-col--reps">
+    <span class="set-col__heading">Repetições</span>
+    <strong class="set-reps-val">{{ set.reps }}</strong>
+    @if (set.repsNote) {
+      <span class="set-reps-note">{{ set.repsNote }}</span>
+    }
+  </div>
+
+  <!-- Col 4: Isométrica / pausa -->
+  <div class="set-col set-col--iso">
+    <span class="set-col__heading">Hold / Pausa</span>
+    @if (set.isoNote) {
+      <span class="set-iso-val">{{ set.isoNote }}</span>
+    } @else {
+      <span class="set-iso-empty">—</span>
+    }
+  </div>
+
+  <!-- Col 5: Descanso -->
+  <div class="set-col set-col--rest">
+    <span class="set-col__heading">Descanso</span>
+    @if (set.restNote) {
+      <span class="set-rest-val set-rest-val--note">{{ set.restNote }}</span>
+    } @else if (set.restSec > 0) {
+      <span class="set-rest-val">{{ set.restSec }}s</span>
+    } @else {
+      <span class="set-iso-empty">—</span>
+    }
+  </div>
+
+  <!-- Col 6: Badges de técnica -->
+  <div class="set-col set-col--tech">
+    @if (set.techBadges?.length) {
+      @for (badge of set.techBadges!; track badge) {
+        <span class="tp2" [ngClass]="'tp-' + (badge | badgeClass)">{{ badge }}</span>
+      }
+    }
+  </div>
+
+</div>

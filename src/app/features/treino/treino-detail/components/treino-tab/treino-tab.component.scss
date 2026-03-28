@@ -1,0 +1,36 @@
+// treino-tab.component.scss — container dos exercise-cards
+
+:host { display: block; }
+
+.treino-tab {
+  display:        flex;
+  flex-direction: column;
+  padding:        1.4rem 1.4rem 2rem;   // alinhado ao .cnt do protótipo
+  max-width:      1160px;
+  margin:         0 auto;
+}
+
+.treino-tab__exercises {
+  display:        flex;
+  flex-direction: column;
+  gap:            0;          // margem já vem do exercise-card (margin-bottom: 1.2rem)
+}
+
+.treino-tab__empty {
+  display:         flex;
+  align-items:     center;
+  justify-content: center;
+  padding:         56px 24px;
+  border:          1px dashed var(--border2, rgba(255,255,255,0.11));
+  border-radius:   12px;
+  margin-top:      8px;
+
+  p {
+    font-family: var(--font, 'Inter', sans-serif);
+    font-size:   13px;
+    color:       var(--text2, #807e78);
+    line-height: 1.6;
+    margin:      0;
+    text-align:  center;
+  }
+}

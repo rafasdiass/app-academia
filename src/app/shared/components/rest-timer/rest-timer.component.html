@@ -1,0 +1,18 @@
+<!-- rest-timer.component.html — nota de descanso prescrito pós-séries -->
+@if (restSec > 0) {
+  <div
+    class="rest-timer"
+    role="complementary"
+    [attr.aria-label]="'Descanso: ' + (restSec | secondsToMmss)"
+  >
+    <ion-icon name="timer-outline" class="rest-timer__icon" aria-hidden="true"></ion-icon>
+    <div class="rest-timer__info">
+      <span class="rest-timer__time">{{ restSec | secondsToMmss }}</span>
+      @if (restNote) {
+        <span class="rest-timer__note">{{ restNote }}</span>
+      } @else {
+        <span class="rest-timer__note">descanso entre séries</span>
+      }
+    </div>
+  </div>
+}

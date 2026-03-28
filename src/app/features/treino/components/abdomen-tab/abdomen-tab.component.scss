@@ -1,0 +1,172 @@
+// abdomen-tab.component.scss
+:host {
+  display: block;
+  --bg2:    #111114;
+  --bg3:    #18181c;
+  --border: rgba(255,255,255,0.065);
+  --border2:rgba(255,255,255,0.11);
+  --text:   #eae8e2;
+  --text2:  #807e78;
+  --text3:  #44433f;
+  --rose:   #e8607a;
+  --amber:  #f0a030;
+  --blue:   #5298e8;
+  --green:  #58c870;
+  --red:    #e05858;
+}
+
+// ── Section header ──────────────────────────────────────────────
+.ab-sh {
+  display:       flex;
+  align-items:   center;
+  gap:           10px;
+  margin-bottom: 1rem;
+}
+
+.ab-sh__bar {
+  display:       block;
+  width:         3px;
+  height:        24px;
+  border-radius: 2px;
+  flex-shrink:   0;
+  background:    var(--amber);
+}
+
+.ab-sh__title { font-size: 16px; font-weight: 700; color: var(--text); letter-spacing: -0.02em; margin: 0; }
+.ab-sh__sub   { font-size: 10px; color: var(--text2); margin: 3px 0 0; line-height: 1.6; }
+
+// ── Alert ───────────────────────────────────────────────────────
+.ab-alert {
+  display:       flex;
+  gap:           10px;
+  border-radius: 10px;
+  padding:       10px 14px;
+  margin-bottom: 1.2rem;
+  background:    rgba(232,96,122,0.06);
+  border:        1px solid rgba(232,96,122,0.18);
+  font-size:     11px;
+  color:         var(--text2);
+  line-height:   1.7;
+  strong { color: var(--text); font-weight: 600; }
+}
+
+.ab-alert__icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+
+// ── Fase card ───────────────────────────────────────────────────
+.ab-fase {
+  background:    var(--bg2);
+  border:        1px solid var(--border);
+  border-radius: 11px;
+  margin-bottom: 1rem;
+  overflow:      hidden;
+}
+
+.ab-fase__hdr {
+  display:       flex;
+  align-items:   center;
+  gap:           10px;
+  flex-wrap:     wrap;
+  padding:       10px 14px;
+  background:    var(--bg3);
+  border-bottom: 1px solid var(--border);
+}
+
+.ab-fase__badge {
+  background:    rgba(240,160,48,0.12);
+  color:         var(--amber);
+  border:        1px solid rgba(240,160,48,0.28);
+  border-radius: 5px;
+  padding:       2px 8px;
+  font-size:     9px;
+  font-weight:   700;
+  white-space:   nowrap;
+  flex-shrink:   0;
+}
+
+.ab-fase__title {
+  font-size:   13px;
+  font-weight: 700;
+  color:       var(--text);
+  margin:      0;
+  flex:        1;
+}
+
+.ab-fase__dur {
+  font-size:  9px;
+  color:      var(--text3);
+  white-space: nowrap;
+}
+
+// ── Fase body ───────────────────────────────────────────────────
+.ab-fase__body {
+  padding:        8px 14px;
+  display:        flex;
+  flex-direction: column;
+}
+
+// ── Exercício row ───────────────────────────────────────────────
+.ab-ex {
+  display:       flex;
+  align-items:   flex-start;
+  gap:           12px;
+  padding:       10px 0;
+  border-bottom: 1px solid var(--border);
+  &:last-child { border-bottom: none; }
+}
+
+.ab-ex__num {
+  background:    var(--bg3);
+  border:        1px solid var(--border);
+  border-radius: 6px;
+  padding:       3px 7px;
+  font-size:     9px;
+  font-weight:   700;
+  color:         var(--text3);
+  font-family:   monospace;
+  flex-shrink:   0;
+  margin-top:    1px;
+}
+
+.ab-ex__info { flex: 1; min-width: 0; }
+
+.ab-ex__name {
+  font-size:     12px;
+  font-weight:   600;
+  color:         var(--text);
+  margin-bottom: 4px;
+  line-height:   1.3;
+}
+
+.ab-ex__desc {
+  font-size:   10px;
+  color:       var(--text2);
+  line-height: 1.6;
+}
+
+.ab-ex__sets {
+  font-size:   10px;
+  font-weight: 700;
+  color:       var(--amber);
+  font-family: monospace;
+  flex-shrink: 0;
+  white-space: nowrap;
+  margin-top:  2px;
+}
+
+// ── Note ────────────────────────────────────────────────────────
+.ab-note {
+  border-radius: 0 9px 9px 0;
+  border:        1px solid var(--border);
+  border-left:   3px solid var(--rose);
+  background:    var(--bg2);
+  padding:       9px 13px;
+  margin-top:    0.5rem;
+  font-size:     11px;
+  color:         var(--text2);
+  line-height:   1.7;
+  strong { color: var(--text); font-weight: 600; }
+  &--rose  { border-left-color: var(--rose);  }
+  &--amber { border-left-color: var(--amber); }
+  &--green { border-left-color: var(--green); }
+  &--blue  { border-left-color: var(--blue);  }
+}

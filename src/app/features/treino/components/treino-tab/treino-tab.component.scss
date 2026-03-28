@@ -1,0 +1,26 @@
+// TreinoTabComponent — container da lista de exercícios
+
+.treino-tab {
+  display:        flex;
+  flex-direction: column;
+  gap:            0;
+  padding-top:    8px;
+}
+
+.treino-tab__exercises {
+  display:        flex;
+  flex-direction: column;
+  gap:            0; // gap gerenciado pelo margin-bottom do ExerciseCard
+}
+
+.treino-tab__empty {
+  display:         flex;
+  justify-content: center;
+  align-items:     center;
+  padding:         48px 16px;
+  font-size:       12px;
+  color:           var(--text3, #44433f);
+  border:          1px dashed var(--border, rgba(255,255,255,0.065));
+  border-radius:   12px;
+  margin-top:      8px;
+}

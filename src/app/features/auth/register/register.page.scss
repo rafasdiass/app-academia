@@ -1,0 +1,280 @@
+// ─────────────────────────────────────────────────────────────────
+// register.page.scss
+// Mesmo design system do login — accent blue (#3b82f6) para diferenciar.
+// ─────────────────────────────────────────────────────────────────
+
+.auth-content {
+  --background: #0a0a0d;
+}
+
+.auth-wrap {
+  min-height:      100vh;
+  display:         flex;
+  flex-direction:  column;
+  justify-content: center;
+  align-items:     center;
+  padding:         40px 24px 56px;
+  gap:             28px;
+
+  background-image: radial-gradient(
+    circle at 25% 15%,
+    rgba(59, 130, 246, 0.10) 0%,
+    transparent 55%
+  ),
+  radial-gradient(
+    circle at 80% 85%,
+    rgba(244, 63, 94, 0.06) 0%,
+    transparent 50%
+  );
+}
+
+// ── Marca (shared style) ──────────────────────────────────────────
+.auth-brand {
+  display:     flex;
+  align-items: center;
+  gap:         14px;
+  animation:   fadeSlideDown 0.5s ease both;
+}
+
+.auth-brand__mark {
+  display:     flex;
+  align-items: flex-end;
+  gap:         3px;
+  height:      32px;
+}
+
+.auth-brand__bar {
+  display:       block;
+  width:         4px;
+  border-radius: 2px;
+  background:    #3b82f6;   // blue no register
+
+  &--1 { height: 14px; opacity: 0.45; }
+  &--2 { height: 32px; }
+  &--3 { height: 22px; opacity: 0.70; }
+}
+
+.auth-brand__text {
+  display:        flex;
+  flex-direction: column;
+  gap:            1px;
+}
+
+.auth-brand__eyebrow {
+  font-family:    'Inter', sans-serif;
+  font-size:      9px;
+  font-weight:    600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color:          #44433f;
+  margin:         0;
+}
+
+.auth-brand__title {
+  font-family:    'Syne', sans-serif;
+  font-size:      26px;
+  font-weight:    800;
+  letter-spacing: -0.03em;
+  color:          #eae8e2;
+  margin:         0;
+  line-height:    1;
+}
+
+// ── Card ──────────────────────────────────────────────────────────
+.auth-card {
+  width:          100%;
+  max-width:      400px;
+  background:     #111114;
+  border:         1px solid rgba(255, 255, 255, 0.08);
+  border-radius:  16px;
+  padding:        28px 24px 32px;
+  display:        flex;
+  flex-direction: column;
+  gap:            16px;
+  animation:      fadeSlideUp 0.45s ease 0.1s both;
+  box-shadow:     0 24px 64px rgba(0, 0, 0, 0.5);
+}
+
+// ── Erro global ───────────────────────────────────────────────────
+.auth-error {
+  display:       flex;
+  align-items:   center;
+  gap:           8px;
+  background:    rgba(244, 63, 94, 0.10);
+  border:        1px solid rgba(244, 63, 94, 0.30);
+  border-radius: 8px;
+  padding:       10px 12px;
+  font-family:   'Inter', sans-serif;
+  font-size:     12px;
+  color:         #f43f5e;
+  animation:     shake 0.35s ease;
+}
+
+.auth-error__icon {
+  font-size:   15px;
+  flex-shrink: 0;
+}
+
+// ── Campos ────────────────────────────────────────────────────────
+.field {
+  display:        flex;
+  flex-direction: column;
+  gap:            6px;
+}
+
+.field__label {
+  font-family:    'Inter', sans-serif;
+  font-size:      10px;
+  font-weight:    700;
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+  color:          #807e78;
+}
+
+.field__wrap {
+  position:    relative;
+  display:     flex;
+  align-items: center;
+  transition:  box-shadow 0.2s;
+
+  &--ok input { border-color: rgba(34, 197, 94, 0.50) !important; }
+  &--err input { border-color: rgba(244, 63, 94, 0.50) !important; }
+}
+
+.field__icon {
+  position:       absolute;
+  left:           12px;
+  font-size:      16px;
+  color:          #44433f;
+  pointer-events: none;
+  z-index:        1;
+}
+
+.field__input {
+  width:         100%;
+  background:    #18181c;
+  border:        1px solid rgba(255, 255, 255, 0.065);
+  border-radius: 10px;
+  padding:       12px 40px 12px 38px;
+  font-family:   'Inter', sans-serif;
+  font-size:     14px;
+  color:         #eae8e2;
+  outline:       none;
+  transition:    border-color 0.2s, box-shadow 0.2s;
+  -webkit-appearance: none;
+
+  &::placeholder { color: #44433f; }
+
+  &:focus {
+    border-color: rgba(59, 130, 246, 0.55);
+    box-shadow:   0 0 0 3px rgba(59, 130, 246, 0.10);
+  }
+}
+
+// Ícone de status (ok / err) no campo de confirmação
+.field__status {
+  position:    absolute;
+  right:       40px;
+  font-size:   16px;
+  pointer-events: none;
+
+  &--ok  { color: #22c55e; }
+  &--err { color: #f43f5e; }
+}
+
+.field__toggle {
+  position:   absolute;
+  right:      10px;
+  background: none;
+  border:     none;
+  padding:    6px;
+  cursor:     pointer;
+  color:      #44433f;
+  font-size:  17px;
+  display:    flex;
+  transition: color 0.2s;
+
+  &:hover { color: #807e78; }
+}
+
+// ── Botão principal ───────────────────────────────────────────────
+.btn-primary {
+  display:         flex;
+  align-items:     center;
+  justify-content: center;
+  gap:             8px;
+  width:           100%;
+  padding:         14px;
+  background:      #3b82f6;
+  border:          none;
+  border-radius:   10px;
+  font-family:     'Syne', sans-serif;
+  font-size:       14px;
+  font-weight:     700;
+  letter-spacing:  0.02em;
+  color:           #fff;
+  cursor:          pointer;
+  transition:      background 0.2s, transform 0.1s, box-shadow 0.2s;
+  margin-top:      4px;
+  box-shadow:      0 4px 20px rgba(59, 130, 246, 0.30);
+
+  ion-icon { font-size: 17px; }
+
+  &:hover  { background: #2563eb; box-shadow: 0 6px 24px rgba(59, 130, 246, 0.40); }
+  &:active { transform: scale(0.98); }
+}
+
+// ── Divisor ───────────────────────────────────────────────────────
+.auth-divider {
+  display:     flex;
+  align-items: center;
+  gap:         10px;
+}
+
+.auth-divider__line {
+  flex:        1;
+  height:      1px;
+  background:  rgba(255, 255, 255, 0.065);
+}
+
+.auth-divider__text {
+  font-family:    'Inter', sans-serif;
+  font-size:      10px;
+  color:          #44433f;
+  letter-spacing: 0.06em;
+}
+
+// ── Rodapé ────────────────────────────────────────────────────────
+.auth-footer {
+  font-family: 'Inter', sans-serif;
+  font-size:   12px;
+  color:       #807e78;
+  text-align:  center;
+  margin:      0;
+}
+
+.auth-footer__link {
+  color:           #3b82f6;
+  font-weight:     600;
+  text-decoration: none;
+  transition:      opacity 0.2s;
+
+  &:hover { opacity: 0.8; }
+}
+
+// ── Animações ─────────────────────────────────────────────────────
+@keyframes fadeSlideDown {
+  from { opacity: 0; transform: translateY(-14px) }
+  to   { opacity: 1; transform: translateY(0) }
+}
+
+@keyframes fadeSlideUp {
+  from { opacity: 0; transform: translateY(16px) }
+  to   { opacity: 1; transform: translateY(0) }
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0) }
+  25%       { transform: translateX(-4px) }
+  75%       { transform: translateX(4px) }
+}

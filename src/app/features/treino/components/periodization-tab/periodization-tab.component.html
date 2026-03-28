@@ -1,0 +1,145 @@
+<!-- periodization-tab.component.html -->
+
+<div class="pt-sh">
+  <span class="pt-sh__bar pt-sh__bar--blue"></span>
+  <div>
+    <h2 class="pt-sh__title">Periodização — {{ durationWeeks }} Semanas Completa</h2>
+    <p class="pt-sh__sub">Grade semanal A-B-C-D · Progressão de protocolos e cargas · Deload planejado</p>
+  </div>
+</div>
+
+<!-- Grade semanal -->
+<div class="pt-sched">
+  @for (day of weekSchedule; track day.day) {
+    <div class="pt-day" [class.pt-day--rest]="day.rest">
+      <div class="pt-day__name">{{ day.day }}</div>
+      @if (day.rest) {
+        <div class="pt-day__lbl pt-day__lbl--rest">REST</div>
+        <div class="pt-day__sub">{{ day.restNote }}</div>
+      } @else {
+        <div class="pt-day__lbl" [ngClass]="'pt-day__lbl--' + day.treinoType?.toLowerCase()">
+          {{ day.treinoType }}
+        </div>
+        <div class="pt-day__cardio">{{ day.cardio }}</div>
+      }
+    </div>
+  }
+</div>
+
+<!-- Tabela de periodização -->
+<div class="pt-table-wrap">
+  <table class="pt-table">
+    <thead>
+    <tr>
+      <th class="pt-th-param">Parâmetro</th>
+      @for (w of periodization; track w.week) {
+        <th>Sem {{ w.week }}</th>
+      }
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td class="pt-td-label">FASE</td>
+      @for (w of periodization; track w.week) {
+        <td class="pt-td-fase" [ngClass]="'pt-td-fase--' + phaseColor(w.phase)">{{ w.phase }}</td>
+      }
+    </tr>
+    <tr>
+      <td class="pt-td-param">Protocolo</td>
+      @for (w of periodization; track w.week) {
+        <td [ngClass]="w.protocol !== 'RPT' ? 'pt-val--amber' : ''">{{ w.protocol }}</td>
+      }
+    </tr>
+    <tr>
+      <td class="pt-td-param">Carga top set</td>
+      @for (w of periodization; track w.week) {
+        <td>{{ w.loadTopSetPct }}%</td>
+      }
+    </tr>
+    <tr>
+      <td class="pt-td-param">ISO top set</td>
+      @for (w of periodization; track w.week) {
+        <td>{{ w.isoTopSetSec }}s</td>
+      }
+    </tr>
+    <tr>
+      <td class="pt-td-param">Myo rodadas</td>
+      @for (w of periodization; track w.week) {
+        <td>{{ w.myoRounds }}</td>
+      }
+    </tr>
+    <tr>
+      <td class="pt-td-param">Sprint km/h</td>
+      @for (w of periodization; track w.week) {
+        <td>{{ w.sprintKmh }}</td>
+      }
+    </tr>
+    <tr>
+      <td class="pt-td-param">Tiros × dur.</td>
+      @for (w of periodization; track w.week) {
+        <td>{{ w.sprintTiros }}×{{ w.sprintSec }}s</td>
+      }
+    </tr>
+    <tr>
+      <td class="pt-td-param">Hiperhidrat.</td>
+      @for (w of periodization; track w.week) {
+        <td [ngClass]="w.hiperhidration ? 'pt-val--blue pt-val--bold' : 'pt-val--muted'">
+          {{ w.hiperhidration ? '✓ ATIVA' : 'Normal' }}
+        </td>
+      }
+    </tr>
+    <tr>
+      <td class="pt-td-param">Creatina</td>
+      @for (w of periodization; track w.week) {
+        <td class="pt-val--purple">{{ w.creatine }}</td>
+      }
+    </tr>
+    <tr>
+      <td class="pt-td-param">Malto intra</td>
+      @for (w of periodization; track w.week) {
+        <td class="pt-val--amber">{{ w.malto }}</td>
+      }
+    </tr>
+    <tr>
+      <td class="pt-td-param">Abd. fase</td>
+      @for (w of periodization; track w.week) {
+        <td class="pt-val--muted">{{ w.abdPhase }}</td>
+      }
+    </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- Pirâmide Dupla -->
+@let pd = advancedProtocols.duplaPiramide;
+<div class="pt-alert pt-alert--purple">
+  <span class="pt-alert__icon">💡</span>
+  <div class="pt-alert__body">
+    <strong>{{ pd.name }}</strong> — Aplicar em: {{ pd.exercises.join(' · ') }}
+    <div class="pt-table-wrap" style="margin-top:8px">
+      <table class="pt-table">
+        <thead>
+        <tr><th>#</th><th>%</th><th>Reps</th><th>Objetivo</th></tr>
+        </thead>
+        <tbody>
+          @for (step of pd.steps; track step.num) {
+            <tr>
+              <td class="pt-td-mono">{{ step.num }}</td>
+              <td class="pt-td-reps">{{ step.pct }}</td>
+              <td class="pt-td-reps">{{ step.reps }}</td>
+              <td class="pt-td-tech">{{ step.note }}</td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+    <div class="pt-note pt-note--amber">{{ pd.note }}</div>
+  </div>
+</div>
+
+<div class="pt-note pt-note--green">
+  <strong>Expectativas realistas em {{ durationWeeks }} semanas:</strong>
+  com déficit calórico moderado + HIIT + RPT + creatina, espera-se perda de 2–4 kg de gordura,
+  ganho ou manutenção de 0,5–1 kg de massa muscular e melhora visível de definição.
+  Use fotos e medidas como métrica real.
+</div>

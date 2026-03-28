@@ -1,20 +1,97 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
+<!-- home.page.html — shell puro, zero lógica de negócio -->
+<ion-content [fullscreen]="true" class="home-content">
+  <div class="home-wrap">
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
+    <!-- ══ HEADER + ALERT BAR → PlanHeaderComponent ═════════════ -->
+    @if (plan$ | async; as plan) {
+      <app-plan-header
+        [plan]="plan"
+        [user]="(currentUser$ | async)"
+      />
+    } @else {
+      <div class="hdr hdr--loading">
+        <div class="hdr-eye">Carregando plano...</div>
+      </div>
+    }
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
+    <!-- ══ NAV TABS ══════════════════════════════════════════════ -->
+    <div class="nav">
+      <div class="navtabs">
+        @for (t of tabs; track t.id) {
+          <button
+            class="ntb"
+            [class.active]="activeTab === t.id"
+            [ngClass]="'n' + t.id"
+            (click)="setTab(t.id)"
+          >
+            <span class="nd" [ngClass]="'nd' + t.id"></span>{{ t.label }}
+          </button>
+        }
+      </div>
+    </div>
+
+    <!-- ══ PAINÉIS ════════════════════════════════════════════════ -->
+    <div class="cnt">
+
+      <!-- Treinos A / B / C / D → TreinoTabComponent (shared) -->
+      @for (treinoId of ['A','B','C','D']; track treinoId) {
+        <div class="pnl" [class.active]="activeTab === treinoId">
+          @if (plan$ | async; as plan) {
+            @let block = getBlock(plan, treinoId);
+            @if (block) {
+              <app-treino-tab [block]="block" />
+            }
+          }
+        </div>
+      }
+
+      <!-- Cardio & HIIT → CardioTabComponent -->
+      <div class="pnl" [class.active]="activeTab === 'Card'">
+        @if (plan$ | async; as plan) {
+          <app-cardio-tab [cardio]="plan.cardio" />
+        }
+      </div>
+
+      <!-- Abdomen → AbdomenTabComponent -->
+      <div class="pnl" [class.active]="activeTab === 'Abd'">
+        @if (plan$ | async; as plan) {
+          <app-abdomen-tab [abdomen]="plan.abdomen" />
+        }
+      </div>
+
+      <!-- Nutrição & Suplementação → NutritionTabComponent -->
+      <div class="pnl" [class.active]="activeTab === 'Nut'">
+        @if (plan$ | async; as plan) {
+          <app-nutrition-tab
+            [nutrition]="plan.nutrition"
+            [hydration]="plan.hydration"
+            [supplements]="plan.supplements"
+            [athlete]="plan.athlete"
+          />
+        }
+      </div>
+
+      <!-- Periodização → PeriodizationTabComponent -->
+      <div class="pnl" [class.active]="activeTab === 'Per'">
+        @if (plan$ | async; as plan) {
+          <app-periodization-tab
+            [periodization]="plan.periodization"
+            [weekSchedule]="plan.weekSchedule"
+            [advancedProtocols]="plan.advancedProtocols"
+            [durationWeeks]="plan.durationWeeks"
+          />
+        }
+      </div>
+
+    </div><!-- /cnt -->
+
+    <!-- ══ FOOTER ════════════════════════════════════════════════ -->
+    <div class="ft-footer">
+      <button class="ft-logout" (click)="logout()">
+        <ion-icon name="log-out-outline"></ion-icon>
+        Sair da conta
+      </button>
+    </div>
+
+  </div><!-- /home-wrap -->
 </ion-content>

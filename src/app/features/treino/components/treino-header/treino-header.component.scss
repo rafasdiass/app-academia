@@ -1,0 +1,133 @@
+// TreinoHeaderComponent — fiel ao .sh + .sr do protótipo HTML
+// Gradiente radial de fundo + faixa lateral colorida
+
+.treino-hdr {
+  position:      relative;
+  display:       flex;
+  gap:           0;
+  padding:       20px 0 16px 16px;
+  margin-bottom: 1rem;
+  border-radius: 0 0 12px 12px;
+  overflow:      hidden;
+  background:    var(--bg2, #111114);
+  border-bottom: 1px solid var(--border, rgba(255,255,255,0.065));
+
+  // O gradiente radial é injetado via [style.background-image]
+  &::before {
+    content:        '';
+    position:       absolute;
+    inset:          0;
+    pointer-events: none;
+  }
+}
+
+// Faixa vertical colorida à esquerda
+.treino-hdr__accent {
+  width:         3px;
+  border-radius: 0 2px 2px 0;
+  flex-shrink:   0;
+  margin-right:  14px;
+  align-self:    stretch;
+  min-height:    100%;
+  position:      absolute;
+  left:          0;
+  top:           0;
+  bottom:        0;
+}
+
+.treino-hdr__body {
+  flex:       1;
+  min-width:  0;
+  padding-left: 14px;
+}
+
+// Eyebrow — "Treino A" com linha decorativa
+.treino-hdr__eyebrow {
+  display:        flex;
+  align-items:    center;
+  gap:            7px;
+  font-family:    var(--head, 'Syne', sans-serif);
+  font-size:      9px;
+  font-weight:    700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  margin-bottom:  6px;
+}
+
+.treino-hdr__eyebrow-line {
+  display:       inline-block;
+  width:         18px;
+  height:        2px;
+  border-radius: 1px;
+}
+
+.treino-hdr__title {
+  font-family:    var(--head, 'Syne', sans-serif);
+  font-size:      20px;
+  font-weight:    800;
+  letter-spacing: -0.03em;
+  line-height:    1.2;
+  color:          var(--text, #eae8e2);
+  margin:         0 0 4px;
+}
+
+.treino-hdr__subtitle {
+  font-size:   11px;
+  color:       var(--text2, #807e78);
+  line-height: 1.6;
+  margin:      0 0 10px;
+}
+
+// Badges de flags corporais
+.treino-hdr__flags {
+  display:     flex;
+  flex-wrap:   wrap;
+  gap:         5px;
+  margin-bottom: 12px;
+}
+
+.treino-hdr__flag-badge {
+  font-family:    var(--mono, monospace);
+  font-size:      8px;
+  font-weight:    700;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  padding:        3px 8px;
+  border-radius:  4px;
+  border:         1px solid;
+}
+
+// KPIs inline
+.treino-hdr__kpis {
+  display:     flex;
+  align-items: center;
+  gap:         12px;
+}
+
+.treino-hdr__kpi {
+  display:        flex;
+  flex-direction: column;
+  gap:            1px;
+
+  strong {
+    font-family: var(--head, 'Syne', sans-serif);
+    font-size:   18px;
+    font-weight: 800;
+    color:       var(--text, #eae8e2);
+    line-height: 1;
+  }
+
+  span {
+    font-size:      8px;
+    color:          var(--text3, #44433f);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+}
+
+.treino-hdr__kpi-divider {
+  width:         1px;
+  height:        28px;
+  background:    var(--border2, rgba(255,255,255,0.11));
+  flex-shrink:   0;
+}

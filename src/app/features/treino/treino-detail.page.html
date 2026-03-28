@@ -1,0 +1,76 @@
+<!-- treino-detail.page.html -->
+<ion-header class="treino-header-bar">
+
+  <!-- Toolbar: botão voltar -->
+  <ion-toolbar class="back-toolbar">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home" text=""></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+
+  <!-- Segmento A / B / C / D
+       Usa: treinoTypes, activeType (getter), getIconForType(), onSegmentChange(), NgClass -->
+  <ion-toolbar class="segment-toolbar">
+    <ion-segment
+      [value]="activeType"
+      (ionChange)="onSegmentChange($any($event))"
+      class="treino-segment"
+      [scrollable]="true"
+    >
+      @for (type of treinoTypes; track type) {
+        <ion-segment-button
+          [value]="type"
+          class="treino-segment-btn"
+          [ngClass]="'treino-segment-btn--' + type.toLowerCase()"
+        >
+          <div class="segment-content">
+            <ion-icon
+              [name]="getIconForType(type)"
+              class="segment-icon"
+              aria-hidden="true"
+            ></ion-icon>
+            <ion-label class="segment-label">{{ type }}</ion-label>
+          </div>
+        </ion-segment-button>
+      }
+    </ion-segment>
+  </ion-toolbar>
+
+</ion-header>
+
+<ion-content class="treino-content">
+
+  <!-- Aguardando Firebase emitir o plano (plan$ | async) -->
+  @if (plan$ | async) {
+
+    <!-- Bloco ativo: activeTreino$ | async
+         Usa: flags$, duration$, app-treino-header, app-treino-tab -->
+    @if (activeTreino$ | async; as block) {
+
+      <app-treino-header
+        [block]="block"
+        [flags]="(flags$ | async) ?? []"
+        [durationMin]="(duration$ | async) ?? 0"
+      />
+
+      <app-treino-tab [block]="block" />
+
+    } @else {
+      <!-- Tipo não existe no plano -->
+      <div class="treino-empty" role="status" aria-live="polite">
+        <ion-icon name="barbell-outline" class="treino-empty__icon" aria-hidden="true"></ion-icon>
+        <p class="treino-empty__msg">
+          Este bloco de treino ainda não está disponível no plano.
+        </p>
+      </div>
+    }
+
+  } @else {
+    <!-- Carregando do Firebase -->
+    <div class="treino-loading" role="status" aria-live="polite">
+      <div class="treino-loading__spinner"></div>
+      <span class="treino-loading__msg">Carregando plano de treino...</span>
+    </div>
+  }
+
+</ion-content>

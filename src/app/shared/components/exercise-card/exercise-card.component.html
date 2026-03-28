@@ -1,0 +1,127 @@
+<!-- exercise-card.component.html -->
+<div
+  class="ex-card"
+  [class.ex-card--expanded]="expanded"
+  [style.--c]="getThemeHex()"
+  [style.--a]="getThemeAlpha15()"
+>
+
+  <!-- ══ HEADER ══════════════════════════════════════════════════ -->
+  <button
+    class="ex-card__hdr"
+    type="button"
+    (click)="onHeaderClick()"
+    [attr.aria-expanded]="expanded"
+    [attr.aria-label]="'Exercício ' + index + ': ' + exercise.name"
+  >
+    <app-protocol-badge [protocol]="exercise.protocol" />
+
+    <div class="ex-card__title">
+      <span class="ex-card__num">{{ index | number:'2.0-0' }} ·</span>
+      {{ exercise.name }}
+      @if (exercise.flag) {
+        <span class="ex-card__flag kf" [ngClass]="'kf-' + (exercise.flag | flagClass)">
+          {{ exercise.flag }}
+        </span>
+      }
+      @if (exercise.muscle) {
+        <span class="ex-card__muscle"
+              [style.background]="getMuscleAlpha()"
+              [style.color]="getThemeHex()">
+          {{ exercise.muscle }}
+        </span>
+      }
+    </div>
+
+    @if (exercise.subtitle) {
+      <div class="ex-card__sub">{{ exercise.subtitle }}</div>
+    }
+
+    <ion-icon
+      class="ex-card__chevron"
+      [class.ex-card__chevron--open]="expanded"
+      [name]="expanded ? 'chevron-down-outline' : 'chevron-forward-outline'"
+      aria-hidden="true"
+    ></ion-icon>
+  </button>
+
+  <!-- ══ META-LINE ════════════════════════════════════════════════ -->
+  <div class="ex-card__meta-row">
+    <div class="ex-card__meta-item">
+      <ion-icon name="layers-outline" aria-hidden="true"></ion-icon>
+      <span>{{ roundsLabel }}</span>
+    </div>
+
+    @if (executionCount > 0) {
+      <div class="ex-card__meta-item ex-card__meta-item--exec">
+        <ion-icon name="repeat-outline" aria-hidden="true"></ion-icon>
+        <span>{{ executionCount }}× executado</span>
+        @if (lastDoneAt) {
+          <span class="ex-card__meta-ago">· {{ lastDoneAt | daysAgo }}</span>
+        }
+      </div>
+    } @else {
+      <div class="ex-card__meta-item ex-card__meta-item--new">
+        <ion-icon name="star-outline" aria-hidden="true"></ion-icon>
+        <span>Primeira vez</span>
+      </div>
+    }
+  </div>
+
+  <!-- ══ BODY ═════════════════════════════════════════════════════ -->
+  @if (expanded) {
+    <div class="ex-card__body" role="region" [attr.aria-label]="'Detalhes: ' + exercise.name">
+
+      <!-- Nota científica -->
+      @if (exercise.scienceNote) {
+        <div class="ex-card__note ab-info">
+          <ion-icon name="flask-outline" class="ex-card__note-icon" aria-hidden="true"></ion-icon>
+          <p>{{ exercise.scienceNote }}</p>
+        </div>
+      }
+
+      <!-- Header de colunas -->
+      <div class="ex-card__cols-header">
+        <span>Série</span>
+        <span>Carga</span>
+        <span>Repetições</span>
+        <span>Hold / Pausa</span>
+        <span>Descanso</span>
+        <span>Técnica</span>
+      </div>
+
+      <!-- Séries -->
+      <div class="ex-card__rows" role="list" aria-label="Séries do exercício">
+        @for (set of exercise.sets; track set.index) {
+          <app-set-row [set]="set" [color]="color" />
+        }
+      </div>
+
+      <!-- Barra gradiente RPT -->
+      @if (exercise.sets.length >= 3 && exercise.protocol === 'RPT') {
+        <div class="ex-card__bar-wrap">
+          <div class="ex-card__bar"
+               style="background:linear-gradient(90deg,var(--c),var(--teal,#2ec4a8));width:100%">
+          </div>
+        </div>
+        <div class="ex-card__bar-labels">
+          <span>Top set · carga máxima · menos reps</span>
+          <span>−20% · mais reps · próximo da falha</span>
+        </div>
+      }
+
+      <!-- Banner de descanso -->
+      @if (lastSetRestSec > 0) {
+        <div class="ex-card__rest-banner">
+          <ion-icon name="timer-outline" aria-hidden="true"></ion-icon>
+          <span>Descanso após a última série: <strong>{{ lastSetRestSec }}s</strong></span>
+          @if (lastSetRestNote) {
+            <span class="ex-card__rest-note">— {{ lastSetRestNote }}</span>
+          }
+        </div>
+      }
+
+    </div>
+  }
+
+</div>

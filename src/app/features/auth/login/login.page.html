@@ -1,0 +1,106 @@
+<!-- login.page.html -->
+<ion-content [fullscreen]="true" class="auth-content">
+
+  <div class="auth-wrap">
+
+    <!-- ── Marca / logo ─────────────────────────────────────────── -->
+    <header class="auth-brand">
+      <div class="auth-brand__mark" aria-hidden="true">
+        <span class="auth-brand__bar auth-brand__bar--1"></span>
+        <span class="auth-brand__bar auth-brand__bar--2"></span>
+        <span class="auth-brand__bar auth-brand__bar--3"></span>
+      </div>
+      <div class="auth-brand__text">
+        <p class="auth-brand__eyebrow">Bem-vindo de volta</p>
+        <h1 class="auth-brand__title">FitTracker</h1>
+      </div>
+    </header>
+
+    <!-- ── Card do formulário ────────────────────────────────────── -->
+    <div class="auth-card">
+
+      <!-- Erro global -->
+      <div class="auth-error" *ngIf="errorMessage()" role="alert" aria-live="assertive">
+        <ion-icon name="alert-circle-outline" class="auth-error__icon" aria-hidden="true"></ion-icon>
+        <span>{{ errorMessage() }}</span>
+      </div>
+
+      <!-- Campo: email -->
+      <div class="field">
+        <label class="field__label" for="login-email">E-mail</label>
+        <div class="field__wrap">
+          <ion-icon name="mail-outline" class="field__icon" aria-hidden="true"></ion-icon>
+          <input
+            id="login-email"
+            class="field__input"
+            type="email"
+            inputmode="email"
+            autocomplete="email"
+            placeholder="seu@email.com"
+            [(ngModel)]="email"
+            (keyup.enter)="submit()"
+          />
+        </div>
+      </div>
+
+      <!-- Campo: senha -->
+      <div class="field">
+        <div class="field__label-row">
+          <label class="field__label" for="login-password">Senha</label>
+          <a class="field__link" routerLink="/forgot-password">Esqueci a senha</a>
+        </div>
+        <div class="field__wrap">
+          <ion-icon name="lock-closed-outline" class="field__icon" aria-hidden="true"></ion-icon>
+          <input
+            id="login-password"
+            class="field__input"
+            [type]="showPassword() ? 'text' : 'password'"
+            autocomplete="current-password"
+            placeholder="••••••••"
+            [(ngModel)]="password"
+            (keyup.enter)="submit()"
+          />
+          <button
+            class="field__toggle"
+            type="button"
+            (click)="togglePassword()"
+            [attr.aria-label]="showPassword() ? 'Ocultar senha' : 'Mostrar senha'"
+          >
+            <ion-icon [name]="showPassword() ? 'eye-off-outline' : 'eye-outline'" aria-hidden="true"></ion-icon>
+          </button>
+        </div>
+      </div>
+
+      <!-- CTA principal -->
+      <button
+        class="btn-primary"
+        type="button"
+        (click)="submit()"
+        [disabled]="isLoading()"
+        aria-label="Entrar"
+      >
+        <ng-container *ngIf="!isLoading()">
+          <span>Entrar</span>
+          <ion-icon name="arrow-forward-outline" aria-hidden="true"></ion-icon>
+        </ng-container>
+        <ion-spinner *ngIf="isLoading()" name="crescent"></ion-spinner>
+      </button>
+
+      <!-- Divisor -->
+      <div class="auth-divider" aria-hidden="true">
+        <span class="auth-divider__line"></span>
+        <span class="auth-divider__text">ou</span>
+        <span class="auth-divider__line"></span>
+      </div>
+
+      <!-- Link para cadastro -->
+      <p class="auth-footer">
+        Não tem conta?
+        <a class="auth-footer__link" routerLink="/register">Criar conta grátis</a>
+      </p>
+
+    </div>
+
+  </div>
+
+</ion-content>

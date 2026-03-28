@@ -1,0 +1,42 @@
+<!-- abdomen-tab.component.html -->
+
+<div class="ab-sh">
+  <span class="ab-sh__bar"></span>
+  <div>
+    <h2 class="ab-sh__title">Protocolo Abdominal — Diastase Confirmada</h2>
+    <p class="ab-sh__sub">TVA · Oblíquos · Saltos condicionais · Sem crunch</p>
+  </div>
+</div>
+
+<div class="ab-alert">
+  <span class="ab-alert__icon">⚠</span>
+  <div>
+    <strong>Diastase confirmada:</strong> {{ abdomen.warning }}
+  </div>
+</div>
+
+@for (fase of abdomen.phases; track fase.weeks) {
+  <div class="ab-fase">
+    <div class="ab-fase__hdr">
+      <span class="ab-fase__badge">Sem {{ fase.weeks }}</span>
+      <h4 class="ab-fase__title">{{ fase.phase }}</h4>
+      <span class="ab-fase__dur">{{ fase.duration }}</span>
+    </div>
+    <div class="ab-fase__body">
+      @for (ex of fase.exercises; track ex.num) {
+        <div class="ab-ex">
+          <div class="ab-ex__num">{{ ex.num }}</div>
+          <div class="ab-ex__info">
+            <div class="ab-ex__name">{{ ex.name }}</div>
+            <div class="ab-ex__desc">{{ ex.desc }}</div>
+          </div>
+          <div class="ab-ex__sets">{{ ex.sets }}</div>
+        </div>
+      }
+    </div>
+  </div>
+}
+
+<div class="ab-note ab-note--rose">
+  <strong>⚠ Pare se:</strong> {{ abdomen.stopIf }}
+</div>

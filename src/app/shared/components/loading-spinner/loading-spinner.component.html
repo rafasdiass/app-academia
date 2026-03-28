@@ -1,0 +1,21 @@
+<!-- LoadingSpinnerComponent
+     Overlay global de carregamento.
+     Renderiza somente quando isLoading$ emite true.
+     IonSpinner com name="crescent" — animação circular limpa.
+-->
+<div
+  class="loading-overlay"
+  *ngIf="loadingService.isLoading$ | async"
+  role="status"
+  aria-live="polite"
+  aria-label="Carregando"
+>
+  <div class="loading-card">
+    <ion-spinner
+      class="loading-spinner"
+      name="crescent"
+      aria-hidden="true"
+    ></ion-spinner>
+    <span class="loading-text">Carregando…</span>
+  </div>
+</div>

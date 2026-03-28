@@ -1,0 +1,44 @@
+// LoadingSpinnerComponent
+// Overlay escuro com blur + card centralizado — design system do app
+
+.loading-overlay {
+  position:       fixed;
+  inset:          0;
+  z-index:        9999;
+  display:        flex;
+  align-items:    center;
+  justify-content: center;
+  background:     rgba(10, 10, 12, 0.82);
+  backdrop-filter: blur(4px);
+  animation:      fadeIn 0.18s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0 }
+  to   { opacity: 1 }
+}
+
+.loading-card {
+  display:         flex;
+  flex-direction:  column;
+  align-items:     center;
+  gap:             12px;
+  background:      var(--bg2, #111114);
+  border:          1px solid var(--border2, rgba(255,255,255,0.11));
+  border-radius:   16px;
+  padding:         28px 36px;
+}
+
+.loading-spinner {
+  --color: var(--ion-color-primary, #3b82f6);
+  width:   36px;
+  height:  36px;
+}
+
+.loading-text {
+  font-size:      11px;
+  color:          var(--text2, #807e78);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-weight:    600;
+}

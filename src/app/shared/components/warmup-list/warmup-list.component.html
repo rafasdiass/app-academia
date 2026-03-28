@@ -1,0 +1,17 @@
+<!-- warmup-list.component.html -->
+@if (items.length > 0) {
+  <div class="warmup-section">
+
+    <h4 class="warmup-title">
+      <span aria-hidden="true">⚡</span>
+      {{ title }}
+    </h4>
+
+    <ul class="warmup-list" role="list">
+      @for (item of items; track $index) {
+        <li class="warmup-item" role="listitem">{{ item }}</li>
+      }
+    </ul>
+
+  </div>
+}

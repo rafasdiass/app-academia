@@ -1,0 +1,171 @@
+// cardio-tab.component.scss
+:host {
+  display: block;
+  --bg2:    #111114;
+  --bg3:    #18181c;
+  --border: rgba(255,255,255,0.065);
+  --border2:rgba(255,255,255,0.11);
+  --text:   #eae8e2;
+  --text2:  #807e78;
+  --text3:  #44433f;
+  --rose:   #e8607a;
+  --teal:   #2ec4a8;
+  --amber:  #f0a030;
+  --blue:   #5298e8;
+  --purple: #9a78e8;
+  --green:  #58c870;
+  --orange: #e88048;
+}
+
+// ── Section header ──────────────────────────────────────────────
+.ct-sh {
+  display:       flex;
+  align-items:   center;
+  gap:           10px;
+  margin-bottom: 1rem;
+
+  &--sub { margin-top: 1.5rem; .ct-sh__title { font-size: 15px; } }
+}
+
+.ct-sh__bar {
+  display:       block;
+  width:         3px;
+  height:        24px;
+  border-radius: 2px;
+  flex-shrink:   0;
+  &--green  { background: var(--green);  }
+  &--amber  { background: var(--amber);  }
+  &--blue   { background: var(--blue);   }
+}
+
+.ct-sh__title {
+  font-size:      16px;
+  font-weight:    700;
+  color:          var(--text);
+  letter-spacing: -0.02em;
+  margin:         0;
+}
+
+.ct-sh__sub {
+  font-size:   10px;
+  color:       var(--text2);
+  margin:      3px 0 0;
+  line-height: 1.6;
+}
+
+// ── Sprint phase grid ───────────────────────────────────────────
+.ct-grid {
+  display:               grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap:                   8px;
+  margin-bottom:         1rem;
+}
+
+.ct-card {
+  background:    var(--bg2);
+  border:        1px solid var(--border);
+  border-radius: 10px;
+  padding:       12px 14px;
+}
+
+.ct-card__label {
+  font-size:      8px;
+  font-weight:    700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color:          var(--text3);
+  margin-bottom:  4px;
+}
+
+.ct-card__val {
+  font-size:   18px;
+  font-weight: 800;
+  color:       var(--green);
+  line-height: 1;
+  margin-bottom: 4px;
+}
+
+.ct-card__unit {
+  font-size:   11px;
+  font-weight: 500;
+  color:       var(--text2);
+}
+
+.ct-card__sub {
+  font-size:   10px;
+  color:       var(--text2);
+  line-height: 1.5;
+}
+
+.ct-card__note {
+  margin-top:  6px;
+  font-size:   9px;
+  color:       var(--amber);
+  line-height: 1.5;
+  padding-top: 6px;
+  border-top:  1px solid var(--border);
+}
+
+// ── HIIT table ──────────────────────────────────────────────────
+.ct-table-wrap {
+  overflow-x:    auto;
+  margin-bottom: 1rem;
+  border:        1px solid var(--border);
+  border-radius: 10px;
+}
+
+.ct-table {
+  width:           100%;
+  border-collapse: collapse;
+  font-size:       11px;
+  min-width:       500px;
+
+  thead tr {
+    background:    var(--bg3);
+    border-bottom: 1px solid var(--border2);
+  }
+
+  thead th {
+    padding:        8px 10px;
+    text-align:     left;
+    font-size:      8px;
+    font-weight:    700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color:          var(--text3);
+    white-space:    nowrap;
+  }
+
+  tbody tr {
+    border-bottom: 1px solid var(--border);
+    transition:    background 0.15s;
+    &:last-child { border-bottom: none; }
+    &:hover      { background: rgba(255,255,255,0.02); }
+  }
+
+  td { padding: 9px 10px; vertical-align: top; }
+}
+
+.ct-td-num  { font-size: 10px; font-weight: 700; color: var(--amber); width: 32px; font-family: monospace; }
+.ct-td-name { font-size: 12px; font-weight: 600; color: var(--text); }
+.ct-td-time { font-size: 11px; font-weight: 700; color: var(--green); white-space: nowrap; font-family: monospace; }
+.ct-td-note { font-size: 10px; color: var(--text2); line-height: 1.5; }
+
+// ── Notes ───────────────────────────────────────────────────────
+.ct-note {
+  border-radius: 0 9px 9px 0;
+  border:        1px solid var(--border);
+  border-left:   3px solid var(--blue);
+  background:    var(--bg2);
+  padding:       9px 13px;
+  margin-top:    8px;
+  font-size:     11px;
+  color:         var(--text2);
+  line-height:   1.7;
+  strong { color: var(--text); font-weight: 600; }
+  &--orange { border-left-color: var(--orange); }
+  &--amber  { border-left-color: var(--amber);  }
+  &--green  { border-left-color: var(--green);  }
+  &--blue   { border-left-color: var(--blue);   }
+  &--rose   { border-left-color: var(--rose);   }
+}

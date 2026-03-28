@@ -1,0 +1,10 @@
+<!-- protocol-badge.component.html -->
+@let style = getBadgeStyle(protocol | protocolColor);
+
+<span
+  class="pyr-badge"
+  [style.background]="style.background"
+  [style.color]="style.color"
+  [style.border-color]="style.borderColor"
+  [attr.aria-label]="protocol + ' protocolo'"
+>{{ protocol }}</span>

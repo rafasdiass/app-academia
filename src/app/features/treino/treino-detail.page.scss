@@ -1,0 +1,170 @@
+// ─────────────────────────────────────────────────────────────────
+// treino-detail.page.scss
+// ─────────────────────────────────────────────────────────────────
+
+// ── Design tokens — espelho dos outros componentes do projeto ─────
+:host {
+  --bg:      #0a0a0c;
+  --bg2:     #111114;
+  --bg3:     #18181c;
+  --bg4:     #202026;
+  --bg5:     #28282f;
+  --border:  rgba(255, 255, 255, 0.065);
+  --border2: rgba(255, 255, 255, 0.11);
+  --text:    #eae8e2;
+  --text2:   #807e78;
+  --text3:   #44433f;
+  --rose:    #e8607a;
+  --teal:    #2ec4a8;
+  --amber:   #f0a030;
+  --blue:    #5298e8;
+  --purple:  #9a78e8;
+  --green:   #58c870;
+  --red:     #e05858;
+  --orange:  #e88048;
+}
+
+// ── Ion Header ────────────────────────────────────────────────────
+.treino-header-bar {
+  --background: var(--bg2);
+  --border-color: var(--border);
+  box-shadow: 0 1px 0 var(--border);
+}
+
+// ── Back toolbar ──────────────────────────────────────────────────
+.back-toolbar {
+  --background:    var(--bg2);
+  --border-color:  transparent;
+  --min-height:    44px;
+
+  ion-back-button {
+    --color:       var(--text2);
+    --icon-font-size: 20px;
+    &:hover { --color: var(--text); }
+  }
+}
+
+// ── Segment toolbar ───────────────────────────────────────────────
+.segment-toolbar {
+  --background:   var(--bg2);
+  --border-color: var(--border);
+  --min-height:   52px;
+  padding: 0 8px 6px;
+}
+
+.treino-segment {
+  --background: var(--bg3);
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  overflow: hidden;
+  width: 100%;
+}
+
+// Botão base
+.treino-segment-btn {
+  --background:             transparent;
+  --background-checked:     transparent;
+  --color:                  var(--text3);
+  --color-checked:          var(--text);
+  --indicator-height:       0;
+  --indicator-color:        transparent;
+  --border-radius:          8px;
+  --padding-start:          10px;
+  --padding-end:            10px;
+  min-width: 52px;
+  transition: background 0.2s, color 0.2s;
+
+  &.segment-button-checked {
+    --background: var(--bg4);
+    background: var(--bg4);
+    border-radius: 8px;
+  }
+}
+
+// Cor do indicador por tipo (usa o ngClass aplicado no template)
+.treino-segment-btn--a.segment-button-checked .segment-icon { color: var(--rose); }
+.treino-segment-btn--b.segment-button-checked .segment-icon { color: var(--teal); }
+.treino-segment-btn--c.segment-button-checked .segment-icon { color: var(--amber); }
+.treino-segment-btn--d.segment-button-checked .segment-icon { color: var(--orange); }
+
+.segment-content {
+  display:        flex;
+  flex-direction: column;
+  align-items:    center;
+  gap:            3px;
+  padding:        6px 0;
+}
+
+.segment-icon {
+  font-size:  18px;
+  color:      var(--text3);
+  transition: color 0.2s;
+}
+
+.segment-label {
+  font-size:      9px;
+  font-weight:    700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color:          inherit;
+}
+
+// ── Ion Content ───────────────────────────────────────────────────
+.treino-content {
+  --background: var(--bg);
+  --color:      var(--text);
+  --padding-bottom: 32px;
+}
+
+// ── Estado: carregando ────────────────────────────────────────────
+.treino-loading {
+  display:         flex;
+  flex-direction:  column;
+  align-items:     center;
+  justify-content: center;
+  gap:             16px;
+  padding:         64px 24px;
+
+  &__spinner {
+    width:         36px;
+    height:        36px;
+    border:        3px solid var(--border2);
+    border-top-color: var(--rose);
+    border-radius: 50%;
+    animation:     spin 0.7s linear infinite;
+  }
+
+  &__msg {
+    font-size:   13px;
+    color:       var(--text2);
+    font-weight: 500;
+  }
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+// ── Estado: bloco vazio ───────────────────────────────────────────
+.treino-empty {
+  display:         flex;
+  flex-direction:  column;
+  align-items:     center;
+  justify-content: center;
+  gap:             12px;
+  padding:         64px 24px;
+  text-align:      center;
+
+  &__icon {
+    font-size: 40px;
+    color:     var(--text3);
+    opacity:   0.5;
+  }
+
+  &__msg {
+    font-size:   14px;
+    color:       var(--text2);
+    line-height: 1.6;
+    max-width:   260px;
+  }
+}
